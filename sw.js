@@ -1,4 +1,4 @@
-const CACHE = 'pt-v1';
+const CACHE = 'pt-v2';
 const ASSETS = ['/portuguese-starter/', '/portuguese-starter/index.html'];
 
 self.addEventListener('install', e => {
