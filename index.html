@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="20260329-2316">
+<meta name="viewport" content="20260329-2325">
 <meta name="version" content="20260329-2311">
 <title>Eric的巴西葡萄牙语入门 · Português para Iniciantes</title>
 <style>
@@ -96,6 +96,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .dtag-area{display:flex;gap:5px;margin-top:8px;}
 @media(max-width:480px){.cards-grid{grid-template-columns:repeat(2,1fr);}.sent-grid{grid-template-columns:1fr;}}
 </style>
+  <link rel="manifest" href="/portuguese-starter/manifest.json">
+  <meta name="theme-color" content="#009c3b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="葡语入门">
+  <link rel="apple-touch-icon" href="/portuguese-starter/icons/icon-192x192.png">
 </head>
 <body>
 <div class="header">
@@ -867,6 +873,15 @@ function init() {
   refreshDashboard();
 }
 init();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/portuguese-starter/sw.js')
+      .then(() => console.log('SW registered'))
+      .catch(e => console.log('SW error:', e));
+  });
+}
 </script>
 </body>
 </html>
