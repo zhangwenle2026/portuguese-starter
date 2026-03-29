@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="version" content="20260329-2311">
+<title>🇧🇷 巴西葡萄牙语入门</title>
+<style>
+:root{--green:#009c3b;--yellow:#ffdf00;--blue:#002776;--bg:#f0faf4;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:#1a2e1a;min-height:100vh;}
+.header{background:linear-gradient(135deg,var(--green),#007a2e);color:white;padding:14px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,156,59,.4);}
+.header h1{font-size:1.35em;font-weight:700;}
+.header .flag{font-size:1.8em;}
+.header .sub{font-size:.78em;opacity:.85;margin-top:2px;}
+.dashboard{background:var(--blue);color:white;padding:10px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.di{text-align:center;}
+.dn{font-size:1.45em;font-weight:700;color:var(--yellow);}
+.dl{font-size:.68em;opacity:.8;}
+.ds{opacity:.3;font-size:1.2em;}
+.da{margin-left:auto;display:flex;gap:6px;}
+.dbtn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:.76em;transition:background .2s;}
+.dbtn:hover{background:rgba(255,255,255,.28);}
+.tabs{display:flex;background:white;border-bottom:3px solid var(--green);overflow-x:auto;}
+.tab{padding:11px 16px;cursor:pointer;font-weight:600;font-size:.88em;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all .2s;color:#555;}
+.tab:hover{color:var(--green);background:#f5fff8;}
+.tab.active{color:var(--green);border-bottom-color:var(--green);background:#f5fff8;}
+.content{padding:14px;max-width:1200px;margin:0 auto;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center;}
+.sbox{flex:1;min-width:180px;padding:7px 12px;border:2px solid rgba(0,156,59,.3);border-radius:8px;font-size:.88em;outline:none;transition:border .2s;}
+.sbox:focus{border-color:var(--green);}
+.fbtn{padding:6px 12px;border:2px solid rgba(0,156,59,.3);border-radius:8px;background:white;cursor:pointer;font-size:.8em;transition:all .2s;}
+.fbtn:hover,.fbtn.active{background:var(--green);color:white;border-color:var(--green);}
+.lbtn{padding:6px 12px;border:2px solid var(--blue);border-radius:8px;background:white;color:var(--blue);cursor:pointer;font-size:.8em;font-weight:600;transition:all .2s;}
+.lbtn.m1{background:var(--blue);color:white;}
+.lbtn.m2{background:var(--yellow);color:var(--blue);border-color:var(--yellow);}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;}
+.sent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;}
+.fc{height:135px;perspective:800px;cursor:pointer;}
+.fc.sc{height:155px;}
+.ci{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;}
+.fc.flipped .ci{transform:rotateY(180deg);}
+.cf,.cb{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10px;text-align:center;border:1px solid rgba(0,156,59,.3);box-shadow:0 2px 8px rgba(0,156,59,.13);}
+.cf{background:white;}
+.cb{background:linear-gradient(135deg,#f5fff8,#e8f8ef);transform:rotateY(180deg);}
+.cpt{font-size:1.1em;font-weight:700;color:var(--blue);margin-bottom:5px;transition:all .3s;}
+.ccn{font-size:.92em;color:#333;}
+.chint{font-size:.75em;color:#777;margin-top:5px;font-style:italic;}
+.ccat{font-size:.68em;background:var(--green);color:white;padding:2px 7px;border-radius:10px;margin-bottom:7px;}
+.cscene{font-size:.7em;color:var(--blue);margin-top:5px;font-style:italic;}
+.cacts{display:flex;gap:5px;margin-top:7px;}
+.tbtn{width:24px;height:24px;border:none;border-radius:50%;cursor:pointer;font-size:.8em;display:flex;align-items:center;justify-content:center;transition:transform .15s,opacity .15s;opacity:.45;background:#eee;}
+.tbtn:hover{opacity:1;transform:scale(1.15);}
+.tbtn.active{opacity:1;}
+.tbtn.tstar{background:#fff3cd;}
+.tbtn.tcheck{background:#d4edda;}
+.tbtn.tcross{background:#f8d7da;}
+.spkbtn{width:24px;height:24px;border:none;border-radius:50%;cursor:pointer;font-size:.75em;background:var(--green);color:white;display:flex;align-items:center;justify-content:center;opacity:.78;transition:opacity .2s;}
+.spkbtn:hover{opacity:1;}
+.lm1 .cpt{background:#bbb;color:transparent;border-radius:3px;}
+.lm1 .cf:hover .cpt{background:transparent;color:var(--blue);}
+.dc{background:white;border-radius:13px;border:1px solid rgba(0,156,59,.3);box-shadow:0 2px 8px rgba(0,156,59,.13);padding:16px;margin-bottom:14px;}
+.dtitle{font-weight:700;color:var(--green);font-size:.95em;margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.dnum{background:var(--green);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75em;flex-shrink:0;}
+.dbody{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:600px){.dbody{grid-template-columns:1fr;}}
+.dpt{background:#f0faf4;border-radius:7px;padding:10px;border-left:3px solid var(--green);}
+.dcn{background:#f0f4ff;border-radius:7px;padding:10px;border-left:3px solid var(--blue);}
+.dline{font-size:.86em;line-height:1.75;color:#333;}
+.dctrl{margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.playbtn{padding:5px 12px;background:var(--green);color:white;border:none;border-radius:7px;cursor:pointer;font-size:.82em;display:flex;align-items:center;gap:4px;transition:background .2s;}
+.playbtn:hover{background:#007a2e;}
+.playbtn.playing{background:var(--blue);}
+.pausebtn{padding:5px 12px;background:var(--yellow);color:var(--blue);border:none;border-radius:7px;cursor:pointer;font-size:.82em;font-weight:600;display:none;align-items:center;gap:4px;}
+.pausebtn.vis{display:inline-flex;}
+.tl{flex:1;min-width:100px;height:6px;background:#ddd;border-radius:3px;cursor:pointer;position:relative;}
+.tlf{height:100%;background:var(--green);border-radius:3px;transition:width .1s linear;pointer-events:none;}
+.tdisp{font-size:.72em;color:#666;min-width:55px;}
+.slbl{font-weight:700;color:var(--blue);margin:14px 0 8px;font-size:.88em;display:flex;align-items:center;gap:5px;}
+.slbl::after{content:'';flex:1;height:1px;background:rgba(0,39,118,.2);}
+.stbar{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap;}
+.sbadge{padding:3px 11px;border-radius:20px;font-size:.75em;font-weight:600;}
+.bt{background:#e8f5e9;color:var(--green);}
+.bstar{background:#fff9e6;color:#b8860b;}
+.bchk{background:#e8f5e9;color:#2e7d32;}
+.bx{background:#fce8e8;color:#c62828;}
+.btd{background:#e3eeff;color:var(--blue);}
+.mbar{background:#ddd;border-radius:4px;height:7px;margin:3px 0 12px;overflow:hidden;}
+.mfill{height:100%;background:linear-gradient(90deg,var(--green),#00c851);border-radius:4px;transition:width .5s;}
+.toast{position:fixed;bottom:18px;right:18px;background:var(--blue);color:white;padding:9px 16px;border-radius:9px;font-size:.85em;z-index:9999;opacity:0;transform:translateY(18px);transition:all .3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.bbar{background:var(--yellow);padding:7px 14px;border-radius:8px;margin-bottom:11px;display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:.82em;font-weight:600;color:var(--blue);}
+.bbar button{padding:3px 9px;border:2px solid var(--blue);border-radius:6px;background:white;color:var(--blue);cursor:pointer;font-size:.8em;font-weight:600;}
+.dtag-area{display:flex;gap:5px;margin-top:8px;}
+@media(max-width:480px){.cards-grid{grid-template-columns:repeat(2,1fr);}.sent-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="header">
+  <span class="flag">🇧🇷</span>
+  <div>
+    <h1>巴西葡萄牙语入门</h1>
+    <div class="sub">Português Brasileiro para Iniciantes</div>
+  </div>
+</div>
+<div class="dashboard" id="dashboard">
+  <div class="di"><div class="dn" id="d-total">0</div><div class="dl">总词条</div></div>
+  <div class="ds">|</div>
+  <div class="di"><div class="dn" id="d-mastered">0</div><div class="dl">已掌握✅</div></div>
+  <div class="ds">|</div>
+  <div class="di"><div class="dn" id="d-starred">0</div><div class="dl">收藏⭐</div></div>
+  <div class="ds">|</div>
+  <div class="di"><div class="dn" id="d-today">0</div><div class="dl">今日学习</div></div>
+  <div class="ds">|</div>
+  <div class="di"><div class="dn" id="d-rate">0%</div><div class="dl">掌握率</div></div>
+  <div class="da">
+    <button class="dbtn" onclick="exportProgress()">💾 导出</button>
+    <button class="dbtn" onclick="document.getElementById('impFile').click()">📂 导入</button>
+    <input type="file" id="impFile" accept=".json" style="display:none" onchange="importProgress(event)">
+    <button class="dbtn" onclick="resetProgress()">🔄 重置</button>
+  </div>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">📚 词汇</div>
+  <div class="tab" onclick="switchTab(1)">💬 打招呼</div>
+  <div class="tab" onclick="switchTab(2)">🗣️ 生活场景</div>
+  <div class="tab" onclick="switchTab(3)">🎭 对话段落</div>
+</div>
+<div class="content">
+<div class="tab-panel active" id="panel-0">
+  <div class="toolbar">
+    <input class="sbox" type="text" placeholder="🔍 搜索词汇..." oninput="filterCards('vocab',this.value)">
+    <button class="fbtn active" onclick="setFilter('vocab','all',this)">全部</button>
+    <button class="fbtn" onclick="setFilter('vocab','数字',this)">数字</button>
+    <button class="fbtn" onclick="setFilter('vocab','颜色',this)">颜色</button>
+    <button class="fbtn" onclick="setFilter('vocab','家庭',this)">家庭</button>
+    <button class="fbtn" onclick="setFilter('vocab','食物',this)">食物</button>
+    <button class="fbtn" onclick="setFilter('vocab','方向',this)">方向</button>
+    <button class="fbtn" onclick="setFilter('vocab','时间',this)">时间</button>
+    <button class="fbtn" onclick="setFilter('vocab','动词',this)">动词</button>
+    <button class="fbtn" onclick="setFilter('vocab','其他',this)">其他</button>
+    <button class="fbtn" onclick="setFilter('vocab','⭐',this)">⭐收藏</button>
+    <button class="fbtn" onclick="setFilter('vocab','✅',this)">✅掌握</button>
+    <button class="fbtn" onclick="setFilter('vocab','✗',this)">✗待学</button>
+    <button class="lbtn" id="lbtn0" onclick="toggleListen(0)">🎧 听力模式</button>
+  </div>
+  <div class="stbar" id="vocab-st"></div>
+  <div class="mbar"><div class="mfill" id="vocab-mf" style="width:0%"></div></div>
+  <div class="bbar">批量操作：<button onclick="batchTag('vocab','⭐')">⭐全部收藏</button><button onclick="batchTag('vocab','✅')">✅全部掌握</button><button onclick="batchClear('vocab')">清除标签</button><button onclick="flipAll('vocab')">🔄全部翻转</button></div>
+  <div class="cards-grid" id="vocab-grid"></div>
+</div>
+<div class="tab-panel" id="panel-1">
+  <div class="toolbar">
+    <input class="sbox" type="text" placeholder="🔍 搜索句型..." oninput="filterCards('greet',this.value)">
+    <button class="fbtn active" onclick="setFilter('greet','all',this)">全部</button>
+    <button class="fbtn" onclick="setFilter('greet','⭐',this)">⭐收藏</button>
+    <button class="fbtn" onclick="setFilter('greet','✅',this)">✅掌握</button>
+    <button class="lbtn" id="lbtn1" onclick="toggleListen(1)">🎧 听力模式</button>
+  </div>
+  <div class="stbar" id="greet-st"></div>
+  <div class="mbar"><div class="mfill" id="greet-mf" style="width:0%"></div></div>
+  <div class="bbar">批量操作：<button onclick="batchTag('greet','⭐')">⭐全部收藏</button><button onclick="batchTag('greet','✅')">✅全部掌握</button><button onclick="batchClear('greet')">清除标签</button><button onclick="flipAll('greet')">🔄全部翻转</button></div>
+  <div class="sent-grid" id="greet-grid"></div>
+</div>
+<div class="tab-panel" id="panel-2">
+  <div class="toolbar">
+    <input class="sbox" type="text" placeholder="🔍 搜索句型..." oninput="filterCards('scene',this.value)">
+    <button class="fbtn active" onclick="setFilter('scene','all',this)">全部</button>
+    <button class="fbtn" onclick="setFilter('scene','⭐',this)">⭐收藏</button>
+    <button class="fbtn" onclick="setFilter('scene','✅',this)">✅掌握</button>
+    <button class="lbtn" id="lbtn2" onclick="toggleListen(2)">🎧 听力模式</button>
+  </div>
+  <div class="stbar" id="scene-st"></div>
+  <div class="mbar"><div class="mfill" id="scene-mf" style="width:0%"></div></div>
+  <div class="bbar">批量操作：<button onclick="batchTag('scene','⭐')">⭐全部收藏</button><button onclick="batchTag('scene','✅')">✅全部掌握</button><button onclick="batchClear('scene')">清除标签</button><button onclick="flipAll('scene')">🔄全部翻转</button></div>
+  <div class="sent-grid" id="scene-grid"></div>
+</div>
+<div class="tab-panel" id="panel-3">
+  <div class="toolbar">
+    <input class="sbox" type="text" placeholder="🔍 搜索对话..." oninput="filterDialogs(this.value)">
+    <button class="fbtn active" onclick="setDFilter('all',this)">全部</button>
+    <button class="fbtn" onclick="setDFilter('⭐',this)">⭐收藏</button>
+    <button class="fbtn" onclick="setDFilter('✅',this)">✅掌握</button>
+  </div>
+  <div class="stbar" id="dialog-st"></div>
+  <div id="dialog-list"></div>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PT_KEY = 'pt_v1';
+const lsLoad = (k, def) => { try { const v = localStorage.getItem(PT_KEY + '_' + k); return v ? JSON.parse(v) : def; } catch(e) { return def; } };
+const lsSave = (k, v) => { try { localStorage.setItem(PT_KEY + '_' + k, JSON.stringify(v)); } catch(e) {} };
+
+// ============ DATA ============
+const VOCAB = [
+  {id:'v0',pt:'zero',cn:'零',hint:'泽-罗',cat:'数字'},
+  {id:'v1',pt:'um / uma',cn:'一',hint:'温（男/女形式）',cat:'数字'},
+  {id:'v2',pt:'dois / duas',cn:'二',hint:'道伊斯/杜阿斯',cat:'数字'},
+  {id:'v3',pt:'três',cn:'三',hint:'特雷斯',cat:'数字'},
+  {id:'v4',pt:'quatro',cn:'四',hint:'夸-特-罗',cat:'数字'},
+  {id:'v5',pt:'cinco',cn:'五',hint:'新-科',cat:'数字'},
+  {id:'v6',pt:'seis',cn:'六',hint:'赛伊斯',cat:'数字'},
+  {id:'v7',pt:'sete',cn:'七',hint:'赛-特',cat:'数字'},
+  {id:'v8',pt:'oito',cn:'八',hint:'奥伊-图',cat:'数字'},
+  {id:'v9',pt:'nove',cn:'九',hint:'诺-维',cat:'数字'},
+  {id:'v10',pt:'dez',cn:'十',hint:'戴斯',cat:'数字'},
+  {id:'v11',pt:'onze',cn:'十一',hint:'翁-泽',cat:'数字'},
+  {id:'v12',pt:'doze',cn:'十二',hint:'道-泽',cat:'数字'},
+  {id:'v13',pt:'treze',cn:'十三',hint:'特雷-泽',cat:'数字'},
+  {id:'v14',pt:'quatorze',cn:'十四',hint:'夸-托-泽',cat:'数字'},
+  {id:'v15',pt:'quinze',cn:'十五',hint:'金-泽',cat:'数字'},
+  {id:'v16',pt:'dezesseis',cn:'十六',hint:'戴泽-赛伊斯',cat:'数字'},
+  {id:'v17',pt:'dezessete',cn:'十七',hint:'戴泽-赛特',cat:'数字'},
+  {id:'v18',pt:'dezoito',cn:'十八',hint:'戴-佐伊图',cat:'数字'},
+  {id:'v19',pt:'dezenove',cn:'十九',hint:'戴泽-诺维',cat:'数字'},
+  {id:'v20',pt:'vinte',cn:'二十',hint:'文-特',cat:'数字'},
+  {id:'v21',pt:'vermelho',cn:'红色',hint:'维-梅-柳',cat:'颜色'},
+  {id:'v22',pt:'azul',cn:'蓝色',hint:'啊-祖',cat:'颜色'},
+  {id:'v23',pt:'verde',cn:'绿色',hint:'维尔-德',cat:'颜色'},
+  {id:'v24',pt:'amarelo',cn:'黄色',hint:'啊-玛-雷-罗',cat:'颜色'},
+  {id:'v25',pt:'branco',cn:'白色',hint:'布朗-科',cat:'颜色'},
+  {id:'v26',pt:'preto',cn:'黑色',hint:'普雷-图',cat:'颜色'},
+  {id:'v27',pt:'laranja',cn:'橙色',hint:'拉-朗-扎',cat:'颜色'},
+  {id:'v28',pt:'roxo',cn:'紫色',hint:'霍-秀',cat:'颜色'},
+  {id:'v29',pt:'mãe',cn:'妈妈',hint:'妈伊（鼻音）',cat:'家庭'},
+  {id:'v30',pt:'pai',cn:'爸爸',hint:'拍',cat:'家庭'},
+  {id:'v31',pt:'filho',cn:'儿子',hint:'菲-柳',cat:'家庭'},
+  {id:'v32',pt:'filha',cn:'女儿',hint:'菲-雅',cat:'家庭'},
+  {id:'v33',pt:'irmão',cn:'哥哥/弟弟',hint:'伊-玛-翁（鼻音）',cat:'家庭'},
+  {id:'v34',pt:'irmã',cn:'姐姐/妹妹',hint:'伊-玛（鼻音）',cat:'家庭'},
+  {id:'v35',pt:'avô',cn:'爷爷/外公',hint:'啊-沃（降调）',cat:'家庭'},
+  {id:'v36',pt:'avó',cn:'奶奶/外婆',hint:'啊-沃（升调）',cat:'家庭'},
+  {id:'v37',pt:'arroz',cn:'米饭',hint:'啊-霍斯',cat:'食物'},
+  {id:'v38',pt:'feijão',cn:'豆子',hint:'菲-让（鼻音）',cat:'食物'},
+  {id:'v39',pt:'frango',cn:'鸡肉',hint:'弗朗-戈',cat:'食物'},
+  {id:'v40',pt:'carne',cn:'肉',hint:'卡-尼',cat:'食物'},
+  {id:'v41',pt:'pão',cn:'面包',hint:'胖（鼻音）',cat:'食物'},
+  {id:'v42',pt:'leite',cn:'牛奶',hint:'雷-特',cat:'食物'},
+  {id:'v43',pt:'água',cn:'水',hint:'啊-瓜',cat:'食物'},
+  {id:'v44',pt:'café',cn:'咖啡',hint:'卡-菲',cat:'食物'},
+  {id:'v45',pt:'fruta',cn:'水果',hint:'弗鲁-塔',cat:'食物'},
+  {id:'v46',pt:'legume',cn:'蔬菜',hint:'雷-古-咪',cat:'食物'},
+  {id:'v47',pt:'esquerda',cn:'左',hint:'伊斯-凯-尔-达',cat:'方向'},
+  {id:'v48',pt:'direita',cn:'右',hint:'地-雷-塔',cat:'方向'},
+  {id:'v49',pt:'frente',cn:'前',hint:'弗伦-特',cat:'方向'},
+  {id:'v50',pt:'atrás',cn:'后',hint:'啊-特拉斯',cat:'方向'},
+  {id:'v51',pt:'cima',cn:'上',hint:'西-玛',cat:'方向'},
+  {id:'v52',pt:'baixo',cn:'下',hint:'拜-秀',cat:'方向'},
+  {id:'v53',pt:'hoje',cn:'今天',hint:'奥-哲',cat:'时间'},
+  {id:'v54',pt:'ontem',cn:'昨天',hint:'翁-腾',cat:'时间'},
+  {id:'v55',pt:'amanhã',cn:'明天',hint:'啊-玛-你啊（鼻音）',cat:'时间'},
+  {id:'v56',pt:'manhã',cn:'早上',hint:'玛-你啊（鼻音）',cat:'时间'},
+  {id:'v57',pt:'tarde',cn:'下午',hint:'塔-尔-德',cat:'时间'},
+  {id:'v58',pt:'noite',cn:'晚上',hint:'诺伊-特',cat:'时间'},
+  {id:'v59',pt:'semana',cn:'星期',hint:'塞-玛-纳',cat:'时间'},
+  {id:'v60',pt:'mês',cn:'月',hint:'梅斯',cat:'时间'},
+  {id:'v61',pt:'ser',cn:'是（本质）',hint:'赛尔',cat:'动词'},
+  {id:'v62',pt:'estar',cn:'在/状态',hint:'伊斯-塔',cat:'动词'},
+  {id:'v63',pt:'ter',cn:'有',hint:'泰尔',cat:'动词'},
+  {id:'v64',pt:'fazer',cn:'做',hint:'法-泽尔',cat:'动词'},
+  {id:'v65',pt:'ir',cn:'去',hint:'伊尔',cat:'动词'},
+  {id:'v66',pt:'vir',cn:'来',hint:'维尔',cat:'动词'},
+  {id:'v67',pt:'falar',cn:'说话',hint:'法-拉尔',cat:'动词'},
+  {id:'v68',pt:'comer',cn:'吃',hint:'科-梅尔',cat:'动词'},
+  {id:'v69',pt:'beber',cn:'喝',hint:'贝-贝尔',cat:'动词'},
+  {id:'v70',pt:'trabalhar',cn:'工作',hint:'特拉-巴-亚尔',cat:'动词'},
+  {id:'v71',pt:'morar',cn:'住',hint:'莫-拉尔',cat:'动词'},
+  {id:'v72',pt:'comprar',cn:'买',hint:'康-普拉尔',cat:'动词'},
+  {id:'v73',pt:'pagar',cn:'付钱',hint:'帕-嘎尔',cat:'动词'},
+  {id:'v74',pt:'pedir',cn:'点/要',hint:'佩-地尔',cat:'动词'},
+  {id:'v75',pt:'ajudar',cn:'帮助',hint:'啊-如-达尔',cat:'动词'},
+  {id:'v76',pt:'bom',cn:'好（男性）',hint:'邦',cat:'其他'},
+  {id:'v77',pt:'boa',cn:'好（女性）',hint:'博-啊',cat:'其他'},
+  {id:'v78',pt:'ruim',cn:'坏',hint:'胡-因',cat:'其他'},
+  {id:'v79',pt:'grande',cn:'大',hint:'格朗-德',cat:'其他'},
+  {id:'v80',pt:'pequeno',cn:'小',hint:'佩-科-诺',cat:'其他'},
+  {id:'v81',pt:'caro',cn:'贵',hint:'卡-罗',cat:'其他'},
+  {id:'v82',pt:'barato',cn:'便宜',hint:'巴-拉-图',cat:'其他'},
+  {id:'v83',pt:'rápido',cn:'快',hint:'哈-皮-杜',cat:'其他'},
+  {id:'v84',pt:'devagar',cn:'慢',hint:'德-瓦-嘎尔',cat:'其他'},
+  {id:'v85',pt:'sim',cn:'是',hint:'新',cat:'其他'},
+  {id:'v86',pt:'não',cn:'不/否',hint:'囔（鼻音）',cat:'其他'},
+  {id:'v87',pt:'obrigado',cn:'谢谢（男）',hint:'奥-布里-嘎-杜',cat:'其他'},
+  {id:'v88',pt:'obrigada',cn:'谢谢（女）',hint:'奥-布里-嘎-达',cat:'其他'},
+  {id:'v89',pt:'por favor',cn:'请/麻烦了',hint:'波尔-法-沃尔',cat:'其他'},
+  {id:'v90',pt:'desculpa',cn:'对不起',hint:'德斯-库-帕',cat:'其他'},
+  {id:'v91',pt:'com licença',cn:'借过',hint:'康-利-森-萨',cat:'其他'},
+  {id:'v92',pt:'quanto',cn:'多少',hint:'夸-图',cat:'其他'},
+  {id:'v93',pt:'onde',cn:'哪里',hint:'翁-德',cat:'其他'},
+  {id:'v94',pt:'quando',cn:'什么时候',hint:'夸-杜',cat:'其他'},
+  {id:'v95',pt:'como',cn:'怎么',hint:'科-莫',cat:'其他'},
+  {id:'v96',pt:'quem',cn:'谁',hint:'凯恩',cat:'其他'},
+  {id:'v97',pt:'muito',cn:'很多',hint:'木-伊-图',cat:'其他'},
+  {id:'v98',pt:'pouco',cn:'一点',hint:'波-科',cat:'其他'},
+  {id:'v99',pt:'mais',cn:'更多',hint:'迈斯',cat:'其他'}
+];
+
+const GREET = [
+  {id:'g0',pt:'Olá! / Oi!',cn:'你好！',scene:'最通用的打招呼'},
+  {id:'g1',pt:'Bom dia!',cn:'早上好！',scene:'早上使用'},
+  {id:'g2',pt:'Boa tarde!',cn:'下午好！',scene:'下午使用'},
+  {id:'g3',pt:'Boa noite!',cn:'晚上好/晚安！',scene:'晚上见面或道别'},
+  {id:'g4',pt:'Como vai? / Como você está?',cn:'你好吗？',scene:'询问近况'},
+  {id:'g5',pt:'Tudo bem?',cn:'一切都好吗？',scene:'随意问候'},
+  {id:'g6',pt:'Tudo bem, obrigado!',cn:'都好，谢谢！',scene:'回应问候'},
+  {id:'g7',pt:'Meu nome é...',cn:'我的名字是...',scene:'自我介绍'},
+  {id:'g8',pt:'Prazer em conhecê-lo!',cn:'很高兴认识你！',scene:'初次见面'},
+  {id:'g9',pt:'De onde você é?',cn:'你从哪里来？',scene:'询问来自哪里'},
+  {id:'g10',pt:'Sou da China.',cn:'我来自中国。',scene:'介绍自己国籍'},
+  {id:'g11',pt:'Falo um pouco de português.',cn:'我会说一点葡语。',scene:'语言介绍'},
+  {id:'g12',pt:'Você fala inglês?',cn:'你说英语吗？',scene:'询问语言能力'},
+  {id:'g13',pt:'Não entendo.',cn:'我不明白。',scene:'听不懂时使用'},
+  {id:'g14',pt:'Pode repetir, por favor?',cn:'可以请你重复一遍吗？',scene:'请对方重复'},
+  {id:'g15',pt:'Fala mais devagar, por favor.',cn:'请说慢一点。',scene:'请对方放慢语速'},
+  {id:'g16',pt:'Quanto tempo você está no Brasil?',cn:'你在巴西多久了？',scene:'询问停留时间'},
+  {id:'g17',pt:'Estou aqui há um mês.',cn:'我在这里一个月了。',scene:'回答停留时间'},
+  {id:'g18',pt:'Até logo!',cn:'再见！',scene:'一会儿再见'},
+  {id:'g19',pt:'Tchau!',cn:'拜拜！',scene:'最常用的告别'},
+  {id:'g20',pt:'Até amanhã!',cn:'明天见！',scene:'明天再见'},
+  {id:'g21',pt:'Boa sorte!',cn:'祝你好运！',scene:'祝福语'},
+  {id:'g22',pt:'Feliz aniversário!',cn:'生日快乐！',scene:'生日祝福'},
+  {id:'g23',pt:'Parabéns!',cn:'恭喜！',scene:'祝贺场合'},
+  {id:'g24',pt:'Com licença.',cn:'借过/打扰一下。',scene:'需要通过或打扰时'},
+  {id:'g25',pt:'Desculpe.',cn:'对不起/打扰了。',scene:'道歉'},
+  {id:'g26',pt:'Obrigado / Obrigada.',cn:'谢谢。（男/女说）',scene:'表示感谢'},
+  {id:'g27',pt:'De nada.',cn:'不客气。',scene:'回应感谢'},
+  {id:'g28',pt:'Por favor.',cn:'请/麻烦了。',scene:'礼貌请求'},
+  {id:'g29',pt:'Tudo certo!',cn:'没问题！一切OK！',scene:'表示确认或没问题'}
+];
+
+const SCENE = [
+  {id:'s0',pt:'Onde fica o banheiro?',cn:'洗手间在哪里？',scene:'问路'},
+  {id:'s1',pt:'Quanto custa isso?',cn:'这个多少钱？',scene:'购物询价'},
+  {id:'s2',pt:'Aceita cartão?',cn:'可以刷卡吗？',scene:'付款'},
+  {id:'s3',pt:'Quero pagar em dinheiro.',cn:'我想付现金。',scene:'付款'},
+  {id:'s4',pt:'Pode fazer mais barato?',cn:'可以便宜一点吗？',scene:'砍价'},
+  {id:'s5',pt:'Quero pedir uma pizza.',cn:'我想点一个披萨。',scene:'点餐'},
+  {id:'s6',pt:'Sem cebola, por favor.',cn:'请不要放洋葱。',scene:'点餐要求'},
+  {id:'s7',pt:'A conta, por favor.',cn:'买单，麻烦了。',scene:'餐厅结账'},
+  {id:'s8',pt:'Para viagem ou para comer aqui?',cn:'外带还是堂食？',scene:'餐厅常见问题'},
+  {id:'s9',pt:'Pode chamar um táxi?',cn:'可以帮我叫出租车吗？',scene:'叫车'},
+  {id:'s10',pt:'Quanto é a corrida até...?',cn:'到...要多少钱？',scene:'打车询价'},
+  {id:'s11',pt:'Me leva para o aeroporto.',cn:'送我去机场。',scene:'打车'},
+  {id:'s12',pt:'Pode virar à esquerda/direita.',cn:'请向左/右转。',scene:'打车指路'},
+  {id:'s13',pt:'Preciso de ajuda.',cn:'我需要帮助。',scene:'紧急求助'},
+  {id:'s14',pt:'Chama a polícia!',cn:'叫警察！',scene:'紧急情况'},
+  {id:'s15',pt:'Chama uma ambulância!',cn:'叫救护车！',scene:'紧急情况'},
+  {id:'s16',pt:'Estou perdido/perdida.',cn:'我迷路了。',scene:'问路'},
+  {id:'s17',pt:'Onde é a estação de metrô?',cn:'地铁站在哪里？',scene:'交通'},
+  {id:'s18',pt:'Tem WiFi aqui?',cn:'这里有WiFi吗？',scene:'网络'},
+  {id:'s19',pt:'Qual é a senha do WiFi?',cn:'WiFi密码是多少？',scene:'网络'},
+  {id:'s20',pt:'Quero alugar um apartamento.',cn:'我想租公寓。',scene:'租房'},
+  {id:'s21',pt:'Qual é o aluguel?',cn:'租金是多少？',scene:'租房'},
+  {id:'s22',pt:'Tem supermercado perto?',cn:'附近有超市吗？',scene:'问路'},
+  {id:'s23',pt:'Vou pegar o aplicativo.',cn:'我用APP点单。',scene:'外卖'},
+  {id:'s24',pt:'Onde fica o hospital mais próximo?',cn:'最近的医院在哪里？',scene:'医疗'},
+  {id:'s25',pt:'Não me sinto bem.',cn:'我感觉不舒服。',scene:'医疗'},
+  {id:'s26',pt:'Preciso de um médico.',cn:'我需要看医生。',scene:'医疗'},
+  {id:'s27',pt:'Pode me indicar um restaurante bom?',cn:'能推荐一个好餐厅吗？',scene:'饮食'},
+  {id:'s28',pt:'Vou trabalhar no escritório.',cn:'我去办公室工作。',scene:'日常'},
+  {id:'s29',pt:'Até que horas vocês abrem?',cn:'你们营业到几点？',scene:'问营业时间'}
+];
+
+const DIALOGS = [
+  {id:'d0',title:'机场到达',sub:'Chegada no Aeroporto',
+   pt:'— Passaporte, por favor.\n— Aqui está.\n— Qual é o motivo da sua visita?\n— Trabalho. Vou ficar por seis meses.\n— Tudo certo. Bem-vindo ao Brasil!',
+   cn:'— 请出示护照。\n— 给您。\n— 您此行目的是什么？\n— 工作。我会待六个月。\n— 好的。欢迎来到巴西！'},
+  {id:'d1',title:'餐厅点餐',sub:'Pedido no Restaurante',
+   pt:'— Boa tarde! O que vai querer?\n— Quero um prato feito, por favor.\n— Para beber?\n— Uma água sem gás.\n— Prontinho! Mais alguma coisa?\n— Não, obrigado.',
+   cn:'— 下午好！您想点什么？\n— 我要一份套餐。\n— 喝什么？\n— 一杯不含气的水。\n— 好的！还需要别的吗？\n— 不了，谢谢。'},
+  {id:'d2',title:'购物砍价',sub:'Barganha na Loja',
+   pt:'— Quanto custa essa camisa?\n— Cinquenta reais.\n— Está caro. Pode fazer por quarenta?\n— Tudo bem, quarenta e cinco.\n— Fechado!',
+   cn:'— 这件衬衫多少钱？\n— 五十雷亚尔。\n— 太贵了。可以四十吗？\n— 好吧，四十五。\n— 成交！'},
+  {id:'d3',title:'问路',sub:'Pedindo Informações',
+   pt:'— Com licença, onde fica o metrô?\n— É ali na esquina, vira à direita.\n— Fica longe?\n— Não, uns cinco minutos a pé.\n— Muito obrigado!',
+   cn:'— 打扰一下，地铁站在哪里？\n— 就在那个街角，右转。\n— 远吗？\n— 不远，走路大概五分钟。\n— 非常感谢！'},
+  {id:'d4',title:'打车',sub:'Pegando Táxi',
+   pt:'— Para o Shopping Ibirapuera, por favor.\n— Pode ser. Vai pela Paulista?\n— Pode ser. Quanto vai custar?\n— Uns vinte reais.\n— Tudo bem.',
+   cn:'— 请去伊比拉普埃拉购物中心。\n— 好的。走保利斯塔大道吗？\n— 可以。大概要多少钱？\n— 大概二十雷亚尔。\n— 好的。'},
+  {id:'d5',title:'超市购物',sub:'Compras no Supermercado',
+   pt:'— Onde ficam as frutas?\n— No fundo da loja, à esquerda.\n— Tem manga hoje?\n— Sim, está na promoção! Dois por cinco reais.\n— Ótimo, vou levar!',
+   cn:'— 水果在哪里？\n— 在店铺深处，左边。\n— 今天有芒果吗？\n— 有，还在特价！两个五雷亚尔。\n— 太好了，我要买！'},
+  {id:'d6',title:'医院就诊',sub:'Consulta Médica',
+   pt:'— Bom dia, preciso consultar um médico.\n— O que está sentindo?\n— Estou com febre e dor de cabeça desde ontem.\n— Tem convênio?\n— Tenho plano de saúde.',
+   cn:'— 早上好，我需要看医生。\n— 您有什么不舒服？\n— 从昨天开始发烧头痛。\n— 您有医保吗？\n— 我有健康保险。'},
+  {id:'d7',title:'房屋租赁',sub:'Aluguel de Apartamento',
+   pt:'— Vi o anúncio do apartamento. Ainda está disponível?\n— Sim! São dois quartos, um banheiro.\n— Qual é o valor?\n— Dois mil reais por mês, água e luz incluídos.\n— Posso visitar amanhã?',
+   cn:'— 我看到公寓广告了。还有空吗？\n— 有！两室一卫。\n— 租金是多少？\n— 每月两千雷亚尔，水电包含。\n— 我明天可以去看看吗？'},
+  {id:'d8',title:'银行开户',sub:'Abrindo Conta no Banco',
+   pt:'— Bom dia, quero abrir uma conta.\n— Tem CPF?\n— Tenho. Aqui está meu documento.\n— Precisa também do comprovante de residência.\n— Posso trazer amanhã?',
+   cn:'— 早上好，我想开户。\n— 您有CPF吗？\n— 有，这是我的证件。\n— 还需要居住证明。\n— 我明天可以带来吗？'},
+  {id:'d9',title:'工作会议',sub:'Reunião de Trabalho',
+   pt:'— Vamos começar a reunião?\n— Claro. Qual é a pauta de hoje?\n— Precisamos falar sobre os resultados do mês.\n— Os números foram bons. Crescemos quinze por cento.\n— Excelente trabalho!',
+   cn:'— 我们开始会议吧？\n— 好的。今天的议程是什么？\n— 我们需要讨论本月的业绩。\n— 数字很好，我们增长了15%。\n— 工作出色！'},
+  {id:'d10',title:'咖啡馆',sub:'Na Cafeteria',
+   pt:'— Bom dia! O que vai querer?\n— Um café com leite e um pão de queijo.\n— Tamanho grande ou pequeno?\n— Grande, por favor.\n— Aqui está. São doze reais.',
+   cn:'— 早上好！您想要什么？\n— 一杯拿铁咖啡和一个芝士面包球。\n— 大杯还是小杯？\n— 大杯，谢谢。\n— 给您。十二雷亚尔。'},
+  {id:'d11',title:'药店买药',sub:'Na Farmácia',
+   pt:'— Tem remédio para dor de cabeça?\n— Tem. Quer o genérico ou a marca?\n— O genérico está bem.\n— É vinte reais. Toma dois comprimidos de oito em oito horas.',
+   cn:'— 有头痛药吗？\n— 有。您要仿制药还是品牌药？\n— 仿制药就好。\n— 二十雷亚尔。每八小时服用两片。'},
+  {id:'d12',title:'网购外卖',sub:'Pedido por Aplicativo',
+   pt:'— Olá, sou do iFood. Seu pedido chegou.\n— Obrigado! É o hambúrguer de queijo?\n— Isso mesmo. Pode assinar aqui?\n— Claro. Tchau!',
+   cn:'— 你好，我是iFood的。您的订单到了。\n— 谢谢！是芝士汉堡吗？\n— 正是。可以在这里签名吗？\n— 好的。再见！'},
+  {id:'d13',title:'健身房',sub:'Na Academia',
+   pt:'— Quero me matricular na academia.\n— Ótimo! Temos planos mensais e anuais.\n— Qual é o preço mensal?\n— Oitenta reais por mês, com aulas inclusas.\n— Posso experimentar um dia?',
+   cn:'— 我想加入健身房。\n— 太好了！我们有月卡和年卡。\n— 月卡多少钱？\n— 每月八十雷亚尔，包含课程。\n— 我可以试一天吗？'},
+  {id:'d14',title:'邻居对话',sub:'Conversa com Vizinho',
+   pt:'— Bom dia, vizinho!\n— Bom dia! Você é o novo morador?\n— Sim, me mudei na semana passada.\n— Seja bem-vindo! Se precisar de algo, é só chamar.',
+   cn:'— 早上好，邻居！\n— 早上好！你是新住户吗？\n— 是的，上周刚搬来。\n— 欢迎！如果需要什么，尽管开口。'},
+  {id:'d15',title:'学校报名',sub:'Matrícula na Escola',
+   pt:'— Quero me inscrever no curso de português.\n— Qual é o seu nível?\n— Sou iniciante. Comecei a estudar há um mês.\n— Temos turmas de segunda a sexta.\n— Que horas são as aulas?',
+   cn:'— 我想报名葡语课程。\n— 您的水平怎么样？\n— 我是初学者，开始学一个月了。\n— 我们周一到周五有课。\n— 课程几点上？'},
+  {id:'d16',title:'修鞋修包',sub:'Sapateiro',
+   pt:'— Pode consertar esse sapato?\n— Pode sim. O que tem?\n— O solado está soltando.\n— Fica pronto em dois dias.\n— Quanto vai custar?\n— Uns trinta reais.',
+   cn:'— 可以修这双鞋吗？\n— 可以。什么问题？\n— 鞋底在脱落。\n— 两天后可以取。\n— 要多少钱？\n— 大概三十雷亚尔。'},
+  {id:'d17',title:'电话预约',sub:'Agendamento por Telefone',
+   pt:'— Alô, quero agendar uma consulta.\n— Para quando?\n— Para quinta-feira de manhã, se possível.\n— Temos horário às dez. Seu nome?\n— Zhang Wenle.',
+   cn:'— 喂，我想预约看诊。\n— 什么时候方便？\n— 如果可以的话，周四上午。\n— 我们十点有空档。您的姓名？\n— 张文乐。'},
+  {id:'d18',title:'理发店',sub:'No Salão de Beleza',
+   pt:'— Bom dia! O que vai fazer hoje?\n— Quero cortar o cabelo. Deixa mais curto dos lados.\n— Está bem. Fica na cadeira.\n— Pode deixar mais um pouco.\n— Pronto, ficou bom?',
+   cn:'— 早上好！今天做什么？\n— 我想剪头发，两侧剪短一点。\n— 好的，请坐。\n— 可以再短一点。\n— 好了，满意吗？'},
+  {id:'d19',title:'海滩',sub:'Na Praia',
+   pt:'— Que praia bonita!\n— É a praia de Santos.\n— Posso nadar aqui?\n— Pode, mas cuidado com as ondas hoje.\n— Obrigado pelo aviso!',
+   cn:'— 好美的海滩！\n— 这是桑托斯海滩。\n— 我可以在这里游泳吗？\n— 可以，但今天要注意海浪。\n— 谢谢提醒！'}
+];
+
+// ============ STATE ============
+let tags = lsLoad('tags', {});
+let todaySet = new Set(lsLoad('today_' + new Date().toDateString(), []));
+let filters = { vocab: 'all', greet: 'all', scene: 'all', dialog: 'all' };
+let searches = { vocab: '', greet: '', scene: '', dialog: '' };
+let listenModes = [0, 0, 0]; // per tab index
+let flippedCards = new Set();
+let audioState = {}; // {id: {utterance, paused, startTime, elapsed}}
+let tlTimers = {};
+
+const LISTEN_LABELS = ['🎧 听力模式', '👁️ 显葡语', '👁️ 显全部'];
+
+// ============ UTILS ============
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function speak(text, lang) {
+  if (!window.speechSynthesis) { showToast('浏览器不支持语音合成'); return; }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'pt-BR';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+function getTag(id) { return tags[id] || ''; }
+function setTag(id, t) {
+  const old = tags[id] || '';
+  tags[id] = (old === t) ? '' : t;
+  lsSave('tags', tags);
+  markToday(id);
+  refreshDashboard();
+}
+function markToday(id) {
+  todaySet.add(id);
+  lsSave('today_' + new Date().toDateString(), [...todaySet]);
+}
+
+// ============ DASHBOARD ============
+function refreshDashboard() {
+  const all = [...VOCAB, ...GREET, ...SCENE, ...DIALOGS];
+  const total = all.length;
+  const mastered = all.filter(x => tags[x.id] === '✅').length;
+  const starred = all.filter(x => tags[x.id] === '⭐').length;
+  const today = todaySet.size;
+  const rate = total > 0 ? Math.round(mastered / total * 100) : 0;
+  document.getElementById('d-total').textContent = total;
+  document.getElementById('d-mastered').textContent = mastered;
+  document.getElementById('d-starred').textContent = starred;
+  document.getElementById('d-today').textContent = today;
+  document.getElementById('d-rate').textContent = rate + '%';
+}
+
+function updateStats(ns, data) {
+  const total = data.length;
+  const mastered = data.filter(x => tags[x.id] === '✅').length;
+  const starred = data.filter(x => tags[x.id] === '⭐').length;
+  const crossed = data.filter(x => tags[x.id] === '✗').length;
+  const el = document.getElementById(ns + '-st');
+  if (el) el.innerHTML = `<span class="sbadge bt">总计 ${total}</span><span class="sbadge bstar">⭐ ${starred}</span><span class="sbadge bchk">✅ ${mastered}</span><span class="sbadge bx">✗ ${crossed}</span>`;
+  const mf = document.getElementById(ns + '-mf');
+  if (mf) mf.style.width = (total > 0 ? Math.round(mastered / total * 100) : 0) + '%';
+}
+
+// ============ TABS ============
+function switchTab(idx) {
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+  document.querySelectorAll('.tab-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+}
+
+// ============ CARDS RENDER ============
+function getVisibleVocab() {
+  const f = filters.vocab;
+  const q = searches.vocab.toLowerCase();
+  return VOCAB.filter(v => {
+    const matchF = f === 'all' || v.cat === f || (f === '⭐' && tags[v.id] === '⭐') || (f === '✅' && tags[v.id] === '✅') || (f === '✗' && tags[v.id] === '✗');
+    const matchQ = !q || v.pt.toLowerCase().includes(q) || v.cn.includes(q);
+    return matchF && matchQ;
+  });
+}
+function getVisibleGreet() {
+  const f = filters.greet;
+  const q = searches.greet.toLowerCase();
+  return GREET.filter(v => {
+    const matchF = f === 'all' || (f === '⭐' && tags[v.id] === '⭐') || (f === '✅' && tags[v.id] === '✅');
+    const matchQ = !q || v.pt.toLowerCase().includes(q) || v.cn.includes(q);
+    return matchF && matchQ;
+  });
+}
+function getVisibleScene() {
+  const f = filters.scene;
+  const q = searches.scene.toLowerCase();
+  return SCENE.filter(v => {
+    const matchF = f === 'all' || (f === '⭐' && tags[v.id] === '⭐') || (f === '✅' && tags[v.id] === '✅');
+    const matchQ = !q || v.pt.toLowerCase().includes(q) || v.cn.includes(q);
+    return matchF && matchQ;
+  });
+}
+
+function renderVocabCard(v, lm) {
+  const tag = tags[v.id] || '';
+  const flipped = flippedCards.has(v.id) ? ' flipped' : '';
+  const lmClass = lm === 1 ? ' lm1' : '';
+  return `<div class="fc${flipped}${lmClass}" id="fc-${v.id}" onclick="flipCard('${v.id}')">
+    <div class="ci">
+      <div class="cf">
+        <span class="ccat">${v.cat}</span>
+        <div class="cpt">${esc(v.pt)}</div>
+        <div class="cacts" onclick="event.stopPropagation()">
+          <button class="spkbtn" onclick="speak('${esc(v.pt)}','pt-BR')" title="发音">🔈</button>
+          <button class="tbtn tstar ${tag==='⭐'?'active':''}" onclick="setTag('${v.id}','⭐');renderVocab()">⭐</button>
+          <button class="tbtn tcheck ${tag==='✅'?'active':''}" onclick="setTag('${v.id}','✅');renderVocab()">✅</button>
+          <button class="tbtn tcross ${tag==='✗'?'active':''}" onclick="setTag('${v.id}','✗');renderVocab()">✗</button>
+        </div>
+      </div>
+      <div class="cb">
+        <div class="ccn">${esc(v.cn)}</div>
+        <div class="chint">🗣️ ${esc(v.hint)}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderSentCard(v, lm, ns) {
+  const tag = tags[v.id] || '';
+  const flipped = flippedCards.has(v.id) ? ' flipped' : '';
+  const lmClass = lm === 1 ? ' lm1' : '';
+  return `<div class="fc sc${flipped}${lmClass}" id="fc-${v.id}" onclick="flipCard('${v.id}')">
+    <div class="ci">
+      <div class="cf">
+        <div class="cpt" style="font-size:.92em">${esc(v.pt)}</div>
+        <div class="cacts" onclick="event.stopPropagation()">
+          <button class="spkbtn" onclick="speak('${esc(v.pt).replace(/'/g,'\\x27')}','pt-BR')" title="发音">🔈</button>
+          <button class="tbtn tstar ${tag==='⭐'?'active':''}" onclick="setTag('${v.id}','⭐');render${ns}()">⭐</button>
+          <button class="tbtn tcheck ${tag==='✅'?'active':''}" onclick="setTag('${v.id}','✅');render${ns}()">✅</button>
+          <button class="tbtn tcross ${tag==='✗'?'active':''}" onclick="setTag('${v.id}','✗');render${ns}()">✗</button>
+        </div>
+      </div>
+      <div class="cb">
+        <div class="ccn">${esc(v.cn)}</div>
+        <div class="cscene">📍 ${esc(v.scene)}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderVocab() {
+  const lm = listenModes[0];
+  const data = getVisibleVocab();
+  document.getElementById('vocab-grid').innerHTML = data.map(v => renderVocabCard(v, lm)).join('');
+  updateStats('vocab', VOCAB);
+  refreshDashboard();
+}
+
+function renderGreet() {
+  const lm = listenModes[1];
+  const data = getVisibleGreet();
+  document.getElementById('greet-grid').innerHTML = data.map(v => renderSentCard(v, lm, 'Greet')).join('');
+  updateStats('greet', GREET);
+  refreshDashboard();
+}
+
+function renderScene() {
+  const lm = listenModes[2];
+  const data = getVisibleScene();
+  document.getElementById('scene-grid').innerHTML = data.map(v => renderSentCard(v, lm, 'Scene')).join('');
+  updateStats('scene', SCENE);
+  refreshDashboard();
+}
+
+// ============ DIALOG RENDER ============
+function getVisibleDialogs() {
+  const f = filters.dialog;
+  const q = searches.dialog.toLowerCase();
+  return DIALOGS.filter(d => {
+    const matchF = f === 'all' || (f === '⭐' && tags[d.id] === '⭐') || (f === '✅' && tags[d.id] === '✅');
+    const matchQ = !q || d.title.includes(q) || d.pt.toLowerCase().includes(q) || d.cn.includes(q);
+    return matchF && matchQ;
+  });
+}
+
+function renderDialogs() {
+  const data = getVisibleDialogs();
+  document.getElementById('dialog-list').innerHTML = data.map((d, i) => renderDialogCard(d, i)).join('');
+  updateDialogStats();
+  refreshDashboard();
+}
+
+function renderDialogCard(d, i) {
+  const tag = tags[d.id] || '';
+  const ptLines = d.pt.split('\n').map(l => `<div>${esc(l)}</div>`).join('');
+  const cnLines = d.cn.split('\n').map(l => `<div>${esc(l)}</div>`).join('');
+  return `<div class="dc" id="dc-${d.id}">
+    <div class="dtitle">
+      <div class="dnum">${i+1}</div>
+      <span>🎭 ${esc(d.title)}</span>
+      <span style="font-size:.78em;color:#666;font-weight:400">${esc(d.sub)}</span>
+      <div class="dtag-area" onclick="event.stopPropagation()">
+        <button class="tbtn tstar ${tag==='⭐'?'active':''}" onclick="setTag('${d.id}','⭐');renderDialogs()">⭐</button>
+        <button class="tbtn tcheck ${tag==='✅'?'active':''}" onclick="setTag('${d.id}','✅');renderDialogs()">✅</button>
+        <button class="tbtn tcross ${tag==='✗'?'active':''}" onclick="setTag('${d.id}','✗');renderDialogs()">✗</button>
+      </div>
+    </div>
+    <div class="dbody">
+      <div class="dpt"><div style="font-size:.7em;font-weight:700;color:#009c3b;margin-bottom:5px">🇧🇷 葡语</div><div class="dline">${ptLines}</div></div>
+      <div class="dcn"><div style="font-size:.7em;font-weight:700;color:#002776;margin-bottom:5px">🇨🇳 中文</div><div class="dline">${cnLines}</div></div>
+    </div>
+    <div class="dctrl">
+      <button class="playbtn" id="pb-${d.id}" onclick="playDialog('${d.id}')">🔈 朗读</button>
+      <button class="pausebtn" id="ppb-${d.id}" onclick="pauseDialog('${d.id}')">⏸ 暂停</button>
+      <div class="tl" id="tl-${d.id}" onclick="seekDialog(event,'${d.id}')">
+        <div class="tlf" id="tlf-${d.id}" style="width:0%"></div>
+      </div>
+      <div class="tdisp" id="tdisp-${d.id}">0.0s</div>
+    </div>
+  </div>`;
+}
+
+function updateDialogStats() {
+  const total = DIALOGS.length;
+  const mastered = DIALOGS.filter(d => tags[d.id] === '✅').length;
+  const starred = DIALOGS.filter(d => tags[d.id] === '⭐').length;
+  const el = document.getElementById('dialog-st');
+  if (el) el.innerHTML = `<span class="sbadge bt">总计 ${total}</span><span class="sbadge bstar">⭐ ${starred}</span><span class="sbadge bchk">✅ ${mastered}</span>`;
+}
+
+// ============ DIALOG AUDIO ============
+let activeDialog = null;
+
+function playDialog(id) {
+  if (!window.speechSynthesis) { showToast('浏览器不支持语音'); return; }
+  if (activeDialog && activeDialog !== id) stopDialog(activeDialog);
+  const d = DIALOGS.find(x => x.id === id);
+  if (!d) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(d.pt.replace(/—/g, ' '));
+  u.lang = 'pt-BR'; u.rate = 0.82;
+  activeDialog = id;
+  const pb = document.getElementById('pb-' + id);
+  const ppb = document.getElementById('ppb-' + id);
+  const tlf = document.getElementById('tlf-' + id);
+  const tdisp = document.getElementById('tdisp-' + id);
+  if (pb) pb.classList.add('playing');
+  if (ppb) ppb.classList.add('vis');
+  let est = d.pt.length / 12;
+  let elapsed = 0;
+  if (tlTimers[id]) clearInterval(tlTimers[id]);
+  tlTimers[id] = setInterval(() => {
+    if (!window.speechSynthesis.speaking) { clearInterval(tlTimers[id]); return; }
+    if (!window.speechSynthesis.paused) elapsed += 0.1;
+    const pct = Math.min(100, elapsed / est * 100);
+    if (tlf) tlf.style.width = pct + '%';
+    if (tdisp) tdisp.textContent = elapsed.toFixed(1) + 's';
+  }, 100);
+  u.onend = () => {
+    clearInterval(tlTimers[id]);
+    if (tlf) tlf.style.width = '100%';
+    if (pb) pb.classList.remove('playing');
+    if (ppb) ppb.classList.remove('vis');
+    activeDialog = null;
+  };
+  audioState[id] = { utterance: u, paused: false };
+  window.speechSynthesis.speak(u);
+  markToday(id);
+}
+
+function pauseDialog(id) {
+  if (!audioState[id]) return;
+  if (window.speechSynthesis.paused) {
+    window.speechSynthesis.resume();
+    const ppb = document.getElementById('ppb-' + id);
+    if (ppb) ppb.textContent = '⏸ 暂停';
+  } else {
+    window.speechSynthesis.pause();
+    const ppb = document.getElementById('ppb-' + id);
+    if (ppb) ppb.textContent = '▶️ 继续';
+  }
+}
+
+function stopDialog(id) {
+  window.speechSynthesis.cancel();
+  if (tlTimers[id]) clearInterval(tlTimers[id]);
+  const pb = document.getElementById('pb-' + id);
+  const ppb = document.getElementById('ppb-' + id);
+  const tlf = document.getElementById('tlf-' + id);
+  if (pb) pb.classList.remove('playing');
+  if (ppb) ppb.classList.remove('vis');
+  if (tlf) tlf.style.width = '0%';
+  audioState[id] = null;
+  activeDialog = null;
+}
+
+function seekDialog(e, id) {
+  const d = DIALOGS.find(x => x.id === id);
+  if (!d) return;
+  const rect = e.currentTarget.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  const est = d.pt.length / 12;
+  showToast('时间轴: ' + (pct * 100).toFixed(0) + '%（浏览器TTS不支持精确跳转）');
+}
+
+// ============ FLIP ============
+function flipCard(id) {
+  if (flippedCards.has(id)) { flippedCards.delete(id); } else { flippedCards.add(id); markToday(id); }
+  const el = document.getElementById('fc-' + id);
+  if (el) el.classList.toggle('flipped', flippedCards.has(id));
+  refreshDashboard();
+}
+function flipAll(ns) {
+  const dataMap = { vocab: VOCAB, greet: GREET, scene: SCENE };
+  const data = dataMap[ns] || [];
+  const allFlipped = data.every(v => flippedCards.has(v.id));
+  data.forEach(v => { if (allFlipped) flippedCards.delete(v.id); else flippedCards.add(v.id); });
+  const renderFn = { vocab: renderVocab, greet: renderGreet, scene: renderScene };
+  if (renderFn[ns]) renderFn[ns]();
+}
+
+// ============ FILTER / SEARCH ============
+function filterCards(ns, q) {
+  searches[ns] = q;
+  const renderFn = { vocab: renderVocab, greet: renderGreet, scene: renderScene };
+  if (renderFn[ns]) renderFn[ns]();
+}
+function filterDialogs(q) {
+  searches.dialog = q;
+  renderDialogs();
+}
+function setFilter(ns, val, btn) {
+  filters[ns] = val;
+  const panel = btn.closest('.tab-panel') || btn.closest('.content');
+  const toolbar = btn.parentNode;
+  toolbar.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const renderFn = { vocab: renderVocab, greet: renderGreet, scene: renderScene };
+  if (renderFn[ns]) renderFn[ns]();
+}
+function setDFilter(val, btn) {
+  filters.dialog = val;
+  btn.parentNode.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDialogs();
+}
+
+// ============ LISTEN MODE ============
+function toggleListen(tabIdx) {
+  const states = ['', 'reveal-pt', 'reveal-all'];
+  const cur = listenModes[tabIdx];
+  if (states[cur]) listenModes[tabIdx] = (cur + 1) % 3;
+  else listenModes[tabIdx] = (cur + 1) % 3;
+  const btn = document.getElementById('lbtn' + tabIdx);
+  if (btn) {
+    btn.textContent = LISTEN_LABELS[listenModes[tabIdx]];
+    btn.className = 'lbtn' + (listenModes[tabIdx] === 1 ? ' m1' : listenModes[tabIdx] === 2 ? ' m2' : '');
+  }
+  const renderFns = [renderVocab, renderGreet, renderScene];
+  if (renderFns[tabIdx]) renderFns[tabIdx]();
+}
+
+// ============ BATCH ============
+function batchTag(ns, t) {
+  const dataMap = { vocab: VOCAB, greet: GREET, scene: SCENE };
+  const data = dataMap[ns] || [];
+  data.forEach(v => { tags[v.id] = t; });
+  lsSave('tags', tags);
+  const renderFn = { vocab: renderVocab, greet: renderGreet, scene: renderScene };
+  if (renderFn[ns]) renderFn[ns]();
+  showToast('已批量标记 ' + t);
+  refreshDashboard();
+}
+function batchClear(ns) {
+  const dataMap = { vocab: VOCAB, greet: GREET, scene: SCENE };
+  const data = dataMap[ns] || [];
+  data.forEach(v => { delete tags[v.id]; });
+  lsSave('tags', tags);
+  const renderFn = { vocab: renderVocab, greet: renderGreet, scene: renderScene };
+  if (renderFn[ns]) renderFn[ns]();
+  showToast('已清除标签');
+  refreshDashboard();
+}
+
+// ============ EXPORT / IMPORT ============
+function exportProgress() {
+  const data = { tags, date: new Date().toISOString(), version: '20260329' };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'pt_progress_' + new Date().toLocaleDateString('zh-CN').replace(/\//g,'-') + '.json';
+  a.click(); URL.revokeObjectURL(url);
+  showToast('进度已导出！');
+}
+function importProgress(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const r = new FileReader();
+  r.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (data.tags) {
+        tags = data.tags;
+        lsSave('tags', tags);
+        renderVocab(); renderGreet(); renderScene(); renderDialogs();
+        refreshDashboard();
+        showToast('进度已导入！');
+      } else { showToast('文件格式错误'); }
+    } catch(err) { showToast('导入失败: ' + err.message); }
+  };
+  r.readAsText(file);
+  e.target.value = '';
+}
+function resetProgress() {
+  if (!confirm('确定重置所有学习进度？')) return;
+  tags = {};
+  lsSave('tags', tags);
+  todaySet = new Set();
+  lsSave('today_' + new Date().toDateString(), []);
+  renderVocab(); renderGreet(); renderScene(); renderDialogs();
+  refreshDashboard();
+  showToast('进度已重置');
+}
+
+// ============ ESCAPE ============
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ============ INIT ============
+function init() {
+  renderVocab();
+  renderGreet();
+  renderScene();
+  renderDialogs();
+  refreshDashboard();
+}
+init();
+</script>
+</body>
+</html>
