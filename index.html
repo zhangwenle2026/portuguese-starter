@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="app-version" content="20260330-0007">
+<meta name="app-version" content="20260330-0017">
 <meta name="version" content="20260329-2311">
 <title>Eric的巴西葡萄牙语入门 · Português para Iniciantes</title>
 <style>
@@ -48,7 +48,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .cb{background:linear-gradient(135deg,#f5fff8,#e8f8ef);transform:rotateY(180deg);}
 .cpt{font-size:1.1em;font-weight:700;color:var(--blue);margin-bottom:5px;transition:all .3s;}
 .ccn{font-size:.92em;color:#333;}
-.chint{font-size:.75em;color:#777;margin-top:5px;font-style:italic;}
+.chint{font-size:.75em;color:#777;margin-top:5px;font-style:italic;display:none;}.chint.revealed{display:block;}.hint-btn{font-size:.72em;color:#888;background:none;border:1px solid #ccc;border-radius:10px;padding:2px 8px;margin-top:6px;cursor:pointer;}.hint-btn:hover{color:var(--blue);border-color:var(--blue);}
 .ccat{font-size:.68em;background:var(--green);color:white;padding:2px 7px;border-radius:10px;margin-bottom:7px;}
 .cscene{font-size:.7em;color:var(--blue);margin-top:5px;font-style:italic;}
 .cacts{display:flex;gap:5px;margin-top:7px;}
@@ -564,7 +564,8 @@ function renderVocabCard(v, lm) {
       </div>
       <div class="cb">
         <div class="ccn">${esc(v.cn)}</div>
-        <div class="chint">🗣️ ${esc(v.hint)}</div>
+        <div class="chint" id="hint-${v.id}">🗣️ ${esc(v.hint)}</div>
+        <button class="hint-btn" id="hbtn-${v.id}" onclick="event.stopPropagation();showHint('${v.id}')">👁️ 查看谐音</button>
       </div>
     </div>
   </div>`;
@@ -749,8 +750,19 @@ function seekDialog(e, id) {
 }
 
 // ============ FLIP ============
+function showHint(id){
+  var el=document.getElementById('hint-'+id);
+  var btn=document.getElementById('hbtn-'+id);
+  if(el) el.classList.add('revealed');
+  if(btn) btn.style.display='none';
+}
 function flipCard(id) {
-  if (flippedCards.has(id)) { flippedCards.delete(id); } else { flippedCards.add(id); markToday(id); }
+  if (flippedCards.has(id)) { flippedCards.delete(id);
+    var hel=document.getElementById('hint-'+id);
+    var hbtn=document.getElementById('hbtn-'+id);
+    if(hel) hel.classList.remove('revealed');
+    if(hbtn) hbtn.style.display='';
+  } else { flippedCards.add(id); markToday(id); }
   const el = document.getElementById('fc-' + id);
   if (el) el.classList.toggle('flipped', flippedCards.has(id));
   refreshDashboard();
