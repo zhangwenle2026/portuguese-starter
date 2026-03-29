@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="app-version" content="20260330-0019">
+<meta name="app-version" content="20260330-0023">
 <meta name="version" content="20260329-2311">
 <title>Eric的巴西葡萄牙语入门 · Português para Iniciantes</title>
 <style>
@@ -48,7 +48,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .cb{background:linear-gradient(135deg,#f5fff8,#e8f8ef);transform:rotateY(180deg);}
 .cpt{font-size:1.1em;font-weight:700;color:var(--blue);margin-bottom:5px;transition:all .3s;}
 .ccn{font-size:.92em;color:#333;}
-.chint{font-size:.75em;color:#777;margin-top:5px;font-style:italic;display:none;}.fc.flipped .chint{display:block;}
+.chint{font-size:.75em;color:#777;margin-top:5px;font-style:italic;display:block;}.fc.flipped .chint{display:none;}
 .ccat{font-size:.68em;background:var(--green);color:white;padding:2px 7px;border-radius:10px;margin-bottom:7px;}
 .cscene{font-size:.7em;color:var(--blue);margin-top:5px;font-style:italic;}
 .cacts{display:flex;gap:5px;margin-top:7px;}
@@ -555,6 +555,7 @@ function renderVocabCard(v, lm) {
       <div class="cf">
         <span class="ccat">${v.cat}</span>
         <div class="cpt">${esc(v.pt)}</div>
+        <div class="chint">🗣️ ${esc(v.hint)}</div>
         <div class="cacts" onclick="event.stopPropagation()">
           <button class="spkbtn" onclick="speak('${esc(v.pt)}','pt-BR')" title="发音">🔈</button>
           <button class="tbtn tstar ${tag==='⭐'?'active':''}" onclick="setTag('${v.id}','⭐');renderVocab()">⭐</button>
@@ -564,7 +565,6 @@ function renderVocabCard(v, lm) {
       </div>
       <div class="cb">
         <div class="ccn">${esc(v.cn)}</div>
-        <div class="chint">🗣️ ${esc(v.hint)}</div>
       </div>
     </div>
   </div>`;
