@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="app-version" content="20260330-0023">
-<meta name="version" content="20260329-2311">
+<meta name="app-version" content="20260401-0230-player">
+<meta name="version" content="20260401-0230-player">
 <title>Eric的巴西葡萄牙语入门 · Português para Iniciantes</title>
 <style>
 :root{--green:#009c3b;--yellow:#ffdf00;--blue:#002776;--bg:#f0faf4;}
@@ -76,9 +76,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .playbtn.playing{background:var(--blue);}
 .pausebtn{padding:5px 12px;background:var(--yellow);color:var(--blue);border:none;border-radius:7px;cursor:pointer;font-size:.82em;font-weight:600;display:none;align-items:center;gap:4px;}
 .pausebtn.vis{display:inline-flex;}
-.tl{flex:1;min-width:100px;height:6px;background:#ddd;border-radius:3px;cursor:pointer;position:relative;}
-.tlf{height:100%;background:var(--green);border-radius:3px;transition:width .1s linear;pointer-events:none;}
+.tl{flex:1;min-width:100px;height:10px;background:#ddd;border-radius:5px;cursor:pointer;position:relative;user-select:none;}
+.tlf{height:100%;background:var(--green);border-radius:5px;transition:width .08s linear;pointer-events:none;position:relative;}
+.tlf::after{content:'';position:absolute;right:-6px;top:-3px;width:16px;height:16px;background:var(--green);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.25);}
 .tdisp{font-size:.72em;color:#666;min-width:55px;}
+.spdbtn{padding:3px 8px;border:1.5px solid rgba(0,156,59,.4);border-radius:6px;background:white;color:#333;cursor:pointer;font-size:.75em;font-weight:600;transition:all .2s;}
+.spdbtn:hover{border-color:var(--green);color:var(--green);}
+.spdbtn.active{background:var(--green);color:white;border-color:var(--green);}
+.pt-line{display:block;border-radius:4px;padding:1px 3px;transition:background .2s,color .2s;}
+.pt-line.reading{background:var(--yellow);color:#1a2e1a;font-weight:700;}
 .slbl{font-weight:700;color:var(--blue);margin:14px 0 8px;font-size:.88em;display:flex;align-items:center;gap:5px;}
 .slbl::after{content:'';flex:1;height:1px;background:rgba(0,39,118,.2);}
 .stbar{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap;}
@@ -637,7 +643,7 @@ function renderDialogs() {
 
 function renderDialogCard(d, i) {
   const tag = tags[d.id] || '';
-  const ptLines = d.pt.split('\n').map(l => `<div>${esc(l)}</div>`).join('');
+  const ptLines = d.pt.split('\n').map((l,i) => `<span class=\"pt-line\" id=\"ptl-${d.id}-${i}\">${esc(l)}</span>`).join('<br>');
   const cnLines = d.cn.split('\n').map(l => `<div>${esc(l)}</div>`).join('');
   return `<div class="dc" id="dc-${d.id}">
     <div class="dtitle">
@@ -651,16 +657,19 @@ function renderDialogCard(d, i) {
       </div>
     </div>
     <div class="dbody">
-      <div class="dpt"><div style="font-size:.7em;font-weight:700;color:#009c3b;margin-bottom:5px">🇧🇷 葡语</div><div class="dline">${ptLines}</div></div>
+      <div class="dpt"><div style="font-size:.7em;font-weight:700;color:#009c3b;margin-bottom:5px">🇧🇷 葡语</div><div class="dline" id="ptlines-${d.id}">${ptLines}</div></div>
       <div class="dcn"><div style="font-size:.7em;font-weight:700;color:#002776;margin-bottom:5px">🇨🇳 中文</div><div class="dline">${cnLines}</div></div>
     </div>
     <div class="dctrl">
       <button class="playbtn" id="pb-${d.id}" onclick="playDialog('${d.id}')">🔈 朗读</button>
       <button class="pausebtn" id="ppb-${d.id}" onclick="pauseDialog('${d.id}')">⏸ 暂停</button>
-      <div class="tl" id="tl-${d.id}" onclick="seekDialog(event,'${d.id}')">
+      <div class="tl" id="tl-${d.id}"
+        onmousedown="startDrag(event,'${d.id}')"
+        ontouchstart="startDrag(event,'${d.id}')">
         <div class="tlf" id="tlf-${d.id}" style="width:0%"></div>
       </div>
-      <div class="tdisp" id="tdisp-${d.id}">0.0s</div>
+      <div class="tdisp" id="tdisp-${d.id}">0/0</div>
+      <button class="spdbtn" id="spd-${d.id}" onclick="cycleSpdDialog('${d.id}')">🐢 慢</button>
     </div>
   </div>`;
 }
@@ -675,53 +684,142 @@ function updateDialogStats() {
 
 // ============ DIALOG AUDIO ============
 let activeDialog = null;
+let dialogSpeeds = {}; // id -> index into SPD_VALS
+const SPD_VALS = [0.6, 0.82, 1.2];
+const SPD_LABELS = ['🐢 慢', '🐇 正常', '🚀 快'];
 
-function playDialog(id) {
+function getSpdIdx(id) { return dialogSpeeds[id] !== undefined ? dialogSpeeds[id] : 1; }
+
+function cycleSpdDialog(id) {
+  const next = (getSpdIdx(id) + 1) % 3;
+  dialogSpeeds[id] = next;
+  const btn = document.getElementById('spd-' + id);
+  if (btn) btn.textContent = SPD_LABELS[next];
+  // 如果正在播放这个，重新播
+  if (activeDialog === id) {
+    const as = audioState[id];
+    const line = as ? as.lineIdx : 0;
+    stopDialog(id);
+    setTimeout(() => playDialog(id, line), 100);
+  }
+}
+
+// 拖拽进度条
+let dragState = null;
+function startDrag(e, id) {
+  e.preventDefault();
+  const tl = document.getElementById('tl-' + id);
+  if (!tl) return;
+  dragState = { id };
+  const move = (ev) => {
+    const rect = tl.getBoundingClientRect();
+    const clientX = ev.touches ? ev.touches[0].clientX : ev.clientX;
+    const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    const d = DIALOGS.find(x => x.id === id);
+    if (!d) return;
+    const lines = d.pt.split('\n');
+    const targetLine = Math.floor(pct * lines.length);
+    // 更新进度条视觉
+    const tlf = document.getElementById('tlf-' + id);
+    if (tlf) tlf.style.width = (pct * 100) + '%';
+    dragState.targetLine = targetLine;
+  };
+  const up = () => {
+    document.removeEventListener('mousemove', move);
+    document.removeEventListener('mouseup', up);
+    document.removeEventListener('touchmove', move);
+    document.removeEventListener('touchend', up);
+    if (dragState && dragState.targetLine !== undefined) {
+      const targetLine = dragState.targetLine;
+      stopDialog(id);
+      setTimeout(() => playDialog(id, targetLine), 80);
+    }
+    dragState = null;
+  };
+  document.addEventListener('mousemove', move);
+  document.addEventListener('mouseup', up);
+  document.addEventListener('touchmove', move, {passive:false});
+  document.addEventListener('touchend', up);
+}
+
+function highlightLine(id, lineIdx, total) {
+  // 清除所有高亮
+  for (let i = 0; i < total; i++) {
+    const el = document.getElementById('ptl-' + id + '-' + i);
+    if (el) el.classList.remove('reading');
+  }
+  // 高亮当前行
+  const cur = document.getElementById('ptl-' + id + '-' + lineIdx);
+  if (cur) {
+    cur.classList.add('reading');
+    cur.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  // 更新进度条和计数
+  const tlf = document.getElementById('tlf-' + id);
+  const tdisp = document.getElementById('tdisp-' + id);
+  const pct = total > 0 ? ((lineIdx + 1) / total * 100) : 0;
+  if (tlf) tlf.style.width = pct + '%';
+  if (tdisp) tdisp.textContent = (lineIdx + 1) + '/' + total;
+}
+
+function playDialog(id, startLine) {
   if (!window.speechSynthesis) { showToast('浏览器不支持语音'); return; }
   if (activeDialog && activeDialog !== id) stopDialog(activeDialog);
   const d = DIALOGS.find(x => x.id === id);
   if (!d) return;
   window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(d.pt.replace(/—/g, ' '));
-  u.lang = 'pt-BR'; u.rate = 0.82;
+  const lines = d.pt.split('\n').filter(l => l.trim());
+  const spdIdx = getSpdIdx(id);
+  const rate = SPD_VALS[spdIdx];
+  const fromLine = startLine || 0;
   activeDialog = id;
+  audioState[id] = { lineIdx: fromLine, paused: false, lines, rate };
   const pb = document.getElementById('pb-' + id);
   const ppb = document.getElementById('ppb-' + id);
-  const tlf = document.getElementById('tlf-' + id);
-  const tdisp = document.getElementById('tdisp-' + id);
   if (pb) pb.classList.add('playing');
   if (ppb) ppb.classList.add('vis');
-  let est = d.pt.length / 12;
-  let elapsed = 0;
-  if (tlTimers[id]) clearInterval(tlTimers[id]);
-  tlTimers[id] = setInterval(() => {
-    if (!window.speechSynthesis.speaking) { clearInterval(tlTimers[id]); return; }
-    if (!window.speechSynthesis.paused) elapsed += 0.1;
-    const pct = Math.min(100, elapsed / est * 100);
-    if (tlf) tlf.style.width = pct + '%';
-    if (tdisp) tdisp.textContent = elapsed.toFixed(1) + 's';
-  }, 100);
-  u.onend = () => {
-    clearInterval(tlTimers[id]);
-    if (tlf) tlf.style.width = '100%';
-    if (pb) pb.classList.remove('playing');
-    if (ppb) ppb.classList.remove('vis');
-    activeDialog = null;
-  };
-  audioState[id] = { utterance: u, paused: false };
-  window.speechSynthesis.speak(u);
   markToday(id);
+
+  function speakLine(idx) {
+    if (idx >= lines.length || activeDialog !== id) {
+      // 全部结束
+      for (let i = 0; i < lines.length; i++) {
+        const el = document.getElementById('ptl-' + id + '-' + i);
+        if (el) el.classList.remove('reading');
+      }
+      const tlf = document.getElementById('tlf-' + id);
+      const tdisp = document.getElementById('tdisp-' + id);
+      if (tlf) tlf.style.width = '100%';
+      if (tdisp) tdisp.textContent = lines.length + '/' + lines.length;
+      if (pb) pb.classList.remove('playing');
+      if (ppb) ppb.classList.remove('vis');
+      activeDialog = null;
+      audioState[id] = null;
+      return;
+    }
+    if (audioState[id]) audioState[id].lineIdx = idx;
+    highlightLine(id, idx, lines.length);
+    const text = lines[idx].replace(/^—\s*/, '');
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'pt-BR';
+    u.rate = audioState[id] ? audioState[id].rate : rate;
+    u.onend = () => {
+      if (activeDialog === id) {
+        setTimeout(() => speakLine(idx + 1), 250);
+      }
+    };
+    window.speechSynthesis.speak(u);
+  }
+  speakLine(fromLine);
 }
 
 function pauseDialog(id) {
-  if (!audioState[id]) return;
+  const ppb = document.getElementById('ppb-' + id);
   if (window.speechSynthesis.paused) {
     window.speechSynthesis.resume();
-    const ppb = document.getElementById('ppb-' + id);
     if (ppb) ppb.textContent = '⏸ 暂停';
   } else {
     window.speechSynthesis.pause();
-    const ppb = document.getElementById('ppb-' + id);
     if (ppb) ppb.textContent = '▶️ 继续';
   }
 }
@@ -732,20 +830,19 @@ function stopDialog(id) {
   const pb = document.getElementById('pb-' + id);
   const ppb = document.getElementById('ppb-' + id);
   const tlf = document.getElementById('tlf-' + id);
+  const d = DIALOGS.find(x => x.id === id);
+  const lineCount = d ? d.pt.split('\n').filter(l=>l.trim()).length : 0;
+  for (let i = 0; i < lineCount; i++) {
+    const el = document.getElementById('ptl-' + id + '-' + i);
+    if (el) el.classList.remove('reading');
+  }
   if (pb) pb.classList.remove('playing');
   if (ppb) ppb.classList.remove('vis');
   if (tlf) tlf.style.width = '0%';
+  const tdisp = document.getElementById('tdisp-' + id);
+  if (tdisp) tdisp.textContent = '0/' + lineCount;
   audioState[id] = null;
   activeDialog = null;
-}
-
-function seekDialog(e, id) {
-  const d = DIALOGS.find(x => x.id === id);
-  if (!d) return;
-  const rect = e.currentTarget.getBoundingClientRect();
-  const pct = (e.clientX - rect.left) / rect.width;
-  const est = d.pt.length / 12;
-  showToast('时间轴: ' + (pct * 100).toFixed(0) + '%（浏览器TTS不支持精确跳转）');
 }
 
 // ============ FLIP ============
