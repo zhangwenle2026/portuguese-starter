@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="app-version" content="20260401-0230-player">
-<meta name="version" content="20260401-0230-player">
+<meta name="app-version" content="20260401-1052">
+<meta name="version" content="20260401-1015-dialogs200-player">
 <title>Eric的巴西葡萄牙语入门 · Português para Iniciantes</title>
 <style>
 :root{--green:#009c3b;--yellow:#ffdf00;--blue:#002776;--bg:#f0faf4;}
@@ -447,6 +447,547 @@ const DIALOGS = [
   {id:'d19',title:'海滩',sub:'Na Praia',
    pt:'— Que praia bonita!\n— É a praia de Santos.\n— Posso nadar aqui?\n— Pode, mas cuidado com as ondas hoje.\n— Obrigado pelo aviso!',
    cn:'— 好美的海滩！\n— 这是桑托斯海滩。\n— 我可以在这里游泳吗？\n— 可以，但今天要注意海浪。\n— 谢谢提醒！'}
+  ,{id:'d20',title:'咖啡厅点单',sub:'Na Cafeteria - Pedido',
+   pt:'— Oi, o que você vai querer?\n— Um café com leite e um pão de queijo, por favor.\n— Para viagem?\n— Não, vou comer aqui.\n— São doze reais.',
+   cn:'— 嗨，您想要什么？\n— 一杯牛奶咖啡和一个芝士面包球。\n— 外带吗？\n— 不，在这里吃。\n— 十二雷亚尔。'}
+  ,{id:'d21',title:'咖啡厅Wi-Fi',sub:'Na Cafeteria - Wi-Fi',
+   pt:'— Com licença, tem Wi-Fi aqui?\n— Tem sim. A senha é cafe2024.\n— Obrigado! Posso trabalhar aqui?\n— Pode ficar à vontade.',
+   cn:'— 打扰一下，这里有Wi-Fi吗？\n— 有的，密码是cafe2024。\n— 谢谢！我可以在这里工作吗？\n— 随便，请自便。'}
+  ,{id:'d22',title:'咖啡厅推荐',sub:'Na Cafeteria - Recomendação',
+   pt:'— O que você recomenda?\n— O cappuccino artesanal é incrível. E o bolo de cenoura.\n— Vou pedir os dois!\n— Você não vai se arrepender.',
+   cn:'— 你推荐什么？\n— 手工卡布奇诺超棒，还有胡萝卜蛋糕。\n— 我两个都点！\n— 你不会后悔的。'}
+  ,{id:'d23',title:'咖啡厅外带',sub:'Na Cafeteria - Para Viagem',
+   pt:'— Um latté grande para viagem, por favor.\n— Com leite integral ou desnatado?\n— Desnatado, sem açúcar.\n— Seu nome?\n— Zhang.\n— Pode pegar no balcão em três minutos!',
+   cn:'— 一杯大杯拿铁外带。\n— 全脂还是脱脂奶？\n— 脱脂，不加糖。\n— 您叫什么名字？\n— 张。\n— 三分钟后去柜台取！'}
+  ,{id:'d24',title:'咖啡厅付账',sub:'Na Cafeteria - Pagamento',
+   pt:'— Posso pagar no cartão?\n— Pode. Débito ou crédito?\n— Débito. Aceita Pix?\n— Aceita. O QR code está na mesa.',
+   cn:'— 可以刷卡吗？\n— 可以，借记还是信用？\n— 借记，也接受Pix吗？\n— 接受，二维码在桌上。'}
+  ,{id:'d25',title:'咖啡厅等位',sub:'Na Cafeteria - Espera',
+   pt:'— Tem mesa disponível?\n— Por enquanto está cheio. Uns dez minutos.\n— Tudo bem, vou esperar.\n— Te aviso quando liberar.',
+   cn:'— 有空位吗？\n— 现在满了，再等约十分钟。\n— 好的，我等。\n— 有了通知你。'}
+  ,{id:'d26',title:'咖啡厅营业时间',sub:'Na Cafeteria - Horário',
+   pt:'— Que horas vocês fecham?\n— Às dez da noite.\n— E amanhã de manhã abre que horas?\n— Às sete e meia.',
+   cn:'— 你们几点关门？\n— 晚上十点。\n— 明天早上几点开？\n— 七点半。'}
+  ,{id:'d27',title:'咖啡厅投诉',sub:'Na Cafeteria - Reclamação',
+   pt:'— Com licença, esse café está frio.\n— Desculpe! Vou fazer outro agora.\n— Obrigado, sem pressa.\n— Pode deixar, sem custo.',
+   cn:'— 打扰一下，这杯咖啡是凉的。\n— 抱歉！我现在重新做一杯。\n— 谢谢，不着急。\n— 没事，不收您钱。'}
+  ,{id:'d28',title:'咖啡厅点心',sub:'Na Cafeteria - Doces',
+   pt:'— Tem algum doce sem glúten?\n— Temos o brownie de chocolate, é sem glúten.\n— Ótimo! Pode me trazer um?\n— Claro, já trago.',
+   cn:'— 有无麸质的甜点吗？\n— 我们有巧克力布朗尼，是无麸质的。\n— 太好了！能帮我拿一个吗？\n— 当然，马上来。'}
+  ,{id:'d29',title:'咖啡厅闲聊',sub:'Na Cafeteria - Bate-papo',
+   pt:'— Essa fila está grande, hein?\n— É, sempre lota de manhã.\n— Você vem sempre aqui?\n— Quase todo dia. O café é muito bom.',
+   cn:'— 队伍真长啊！\n— 是的，早上总是很多人。\n— 你常来这里吗？\n— 几乎每天，咖啡很好。'}
+  ,{id:'d30',title:'超市找商品',sub:'No Supermercado - Produto',
+   pt:'— Onde fica o arroz?\n— No corredor três, do lado do feijão.\n— E o azeite?\n— Corredor cinco, prateleiras de cima.',
+   cn:'— 大米在哪里？\n— 在三号走廊，豆子旁边。\n— 橄榄油呢？\n— 五号走廊上层货架。'}
+  ,{id:'d31',title:'超市结账',sub:'No Supermercado - Caixa',
+   pt:'— Tem cartão fidelidade?\n— Ainda não. Como faço?\n— Preenche esse formulário, é rápido.\n— Beleza, vou fazer agora.',
+   cn:'— 您有会员卡吗？\n— 还没有，怎么办？\n— 填这张表，很快的。\n— 好的，我现在就办。'}
+  ,{id:'d32',title:'超市特价',sub:'No Supermercado - Promoção',
+   pt:'— Esse frango está em promoção?\n— Está, hoje é na metade do preço.\n— Posso levar dois?\n— Pode levar quantos quiser.',
+   cn:'— 这个鸡肉在特价吗？\n— 是的，今天半价。\n— 我可以拿两个吗？\n— 想拿几个都行。'}
+  ,{id:'d33',title:'超市退货',sub:'No Supermercado - Troca',
+   pt:'— Quero trocar esse produto, está com defeito.\n— Tem a nota fiscal?\n— Tenho aqui.\n— Pode pegar outro ou devolvemos o dinheiro.',
+   cn:'— 我想退这个商品，它有问题。\n— 有发票吗？\n— 有，在这里。\n— 可以换一个或退款。'}
+  ,{id:'d34',title:'超市用Pix',sub:'No Supermercado - Pix',
+   pt:'— Dá para pagar no Pix?\n— Dá, é só escanear o QR code ali.\n— Posso dividir com cartão?\n— Aqui só um meio por vez.',
+   cn:'— 可以用Pix支付吗？\n— 可以，扫那边的二维码。\n— 可以一部分刷卡吗？\n— 每次只能用一种方式。'}
+  ,{id:'d35',title:'超市散装称重',sub:'No Supermercado - Balança',
+   pt:'— Como funciona a balança de frutas?\n— Coloca, escolhe na tela e imprime a etiqueta.\n— Entendi! Obrigado.\n— De nada.',
+   cn:'— 水果称怎么用？\n— 放上去，屏幕选品种，打印标签。\n— 明白了！谢谢。\n— 不客气。'}
+  ,{id:'d36',title:'超市熟食',sub:'No Supermercado - Frios',
+   pt:'— Pode me dar duzentos gramas de presunto?\n— Fino ou grosso?\n— Fino, por favor.\n— Mais alguma coisa?\n— Cem gramas de muçarela também.',
+   cn:'— 能给我切两百克火腿吗？\n— 切薄还是厚？\n— 薄的。\n— 还需要别的吗？\n— 再来一百克马苏里拉。'}
+  ,{id:'d37',title:'超市问新鲜度',sub:'No Supermercado - Frutas',
+   pt:'— Essa manga está madura?\n— Em dois dias fica perfeita.\n— E abacaxi tem?\n— Chegou hoje de manhã, bem fresquinho.',
+   cn:'— 这个芒果熟了吗？\n— 再两天就完美了。\n— 有菠萝吗？\n— 今天早上刚到，很新鲜。'}
+  ,{id:'d38',title:'超市购物车',sub:'No Supermercado - Carrinho',
+   pt:'— Tem carrinho?\n— Precisa de moeda de um real.\n— Só tenho nota. Tem troco?\n— No caixa eles dão. Ou usa cestinha.',
+   cn:'— 有购物车吗？\n— 需要投一雷亚尔硬币。\n— 我只有纸币，有零钱吗？\n— 收银台有，或者用购物篮。'}
+  ,{id:'d39',title:'超市推荐品牌',sub:'No Supermercado - Marca',
+   pt:'— Qual é o melhor leite?\n— O integral é melhor para tomar puro.\n— E de preço?\n— O de marca própria é mais em conta, mesma qualidade.',
+   cn:'— 哪款牛奶最好？\n— 全脂直接喝最好。\n— 价格呢？\n— 自有品牌更实惠，质量一样。'}
+  ,{id:'d40',title:'地铁换乘',sub:'No Metrô - Baldeação',
+   pt:'— Essa linha vai para a Paulista?\n— Vai, mas precisa fazer baldeação.\n— Onde?\n— Na estação Sé, pega a linha dois azul.',
+   cn:'— 这条线去保利斯塔吗？\n— 去，但需要换乘。\n— 在哪里？\n— 在Sé站换乘蓝色2号线。'}
+  ,{id:'d41',title:'买地铁票',sub:'No Metrô - Bilhete',
+   pt:'— Como compro a passagem?\n— Aqui na máquina. Vai pagar como?\n— No cartão. Quanto custa?\n— Quatro reais e quarenta.',
+   cn:'— 怎么买票？\n— 在这台机器，怎么付款？\n— 刷卡，多少钱？\n— 四雷亚尔四十。'}
+  ,{id:'d42',title:'坐Uber',sub:'No Uber',
+   pt:'— Oi, você é o meu Uber?\n— Sou sim. Você é o Zhang?\n— Sou. Vamos ao aeroporto.\n— Certo, uns quarenta minutos com esse trânsito.',
+   cn:'— 你好，你是我的Uber吗？\n— 是的，你是张吗？\n— 是的，我们去机场。\n— 好的，这个交通大概四十分钟。'}
+  ,{id:'d43',title:'坐公交',sub:'No Ônibus',
+   pt:'— Esse ônibus passa pela Avenida Brasil?\n— Passa, é a terceira parada.\n— Quanto tempo leva?\n— Uns dez minutos sem trânsito.',
+   cn:'— 这辆公交经过巴西大道吗？\n— 经过，是第三站。\n— 要多久？\n— 不堵车约十分钟。'}
+  ,{id:'d44',title:'打车砍价',sub:'Táxi - Negociação',
+   pt:'— Quanto é para o centro?\n— Quarenta reais.\n— Por trinta não faz?\n— Por trinta e cinco, é o mínimo.\n— Fecha!',
+   cn:'— 去市中心多少钱？\n— 四十雷亚尔。\n— 三十行吗？\n— 三十五，最低了。\n— 成交！'}
+  ,{id:'d45',title:'问末班车',sub:'Transporte - Último Metrô',
+   pt:'— Que horas é o último metrô?\n— Meia-noite. Melhor não perder!\n— Tenho tempo, são onze e vinte.\n— Corre! São cinco minutos daqui.',
+   cn:'— 末班地铁几点？\n— 午夜，最好别错过！\n— 还有时间，十一点二十。\n— 快点！从这里走五分钟。'}
+  ,{id:'d46',title:'租自行车',sub:'Aluguel de Bike',
+   pt:'— Como funciona o Itaú Bike?\n— Baixa o app, cadastra o cartão e desbloqueia pelo celular.\n— E o preço?\n— Uma hora é seis reais.',
+   cn:'— Itaú单车怎么用？\n— 下载APP，绑定银行卡，用手机解锁。\n— 费用呢？\n— 一小时六雷亚尔。'}
+  ,{id:'d47',title:'确认Uber地址',sub:'No Uber - Destino',
+   pt:'— Rua Augusta, quinhentos e vinte.\n— Perto da Haddock Lobo?\n— Isso mesmo.\n— Já conheço. Bota o cinto!',
+   cn:'— 奥古斯塔街五百二十号。\n— 靠近哈多克·洛博街吗？\n— 对。\n— 我知道了，系好安全带！'}
+  ,{id:'d48',title:'停车场',sub:'Estacionamento',
+   pt:'— Tem estacionamento no shopping?\n— Tem, no subsolo. A primeira hora é grátis.\n— Depois quanto custa?\n— Seis reais por hora.',
+   cn:'— 购物中心有停车场吗？\n— 有，在地下，第一小时免费。\n— 之后多少钱？\n— 每小时六雷亚尔。'}
+  ,{id:'d49',title:'地铁卡充值',sub:'No Metrô - Recarga',
+   pt:'— Posso recarregar aqui?\n— Pode, quanto quer?\n— Cinquenta reais.\n— Pronto! Já está carregado.',
+   cn:'— 我可以在这里充值吗？\n— 可以，充多少？\n— 五十雷亚尔。\n— 好了！已经充好了。'}
+  ,{id:'d50',title:'问附近超市',sub:'Pedindo Direções - Mercado',
+   pt:'— Tem um mercado perto?\n— Vai em frente dois quarteirões e dobra à esquerda.\n— Passa pela farmácia?\n— Sim, a farmácia fica na esquina.',
+   cn:'— 附近有超市吗？\n— 直走两个街区然后左转。\n— 会经过药店吗？\n— 会，药店在街角。'}
+  ,{id:'d51',title:'问路地铁站',sub:'Pedindo Direções - Metrô',
+   pt:'— Como chego à estação Vila Madalena?\n— Vai pela avenida ali, uns trezentos metros.\n— Tem referência?\n— É ao lado do Pão de Açúcar.',
+   cn:'— 怎么去维拉马达莱纳站？\n— 沿那条大道走，约三百米。\n— 有参照物吗？\n— 在Pão de Açúcar超市旁边。'}
+  ,{id:'d52',title:'迷路求助',sub:'Pedindo Direções - Perdido',
+   pt:'— Estou perdido, pode me ajudar?\n— Claro! Onde você quer ir?\n— Ao Parque Ibirapuera.\n— Você está aqui, é por essa avenida uns dois quilômetros.',
+   cn:'— 我迷路了，能帮我吗？\n— 当然！你要去哪里？\n— 伊比拉普埃拉公园。\n— 你在这里，沿这条大道走两公里。'}
+  ,{id:'d53',title:'问方向',sub:'Pedindo Direções - Esquerda/Direita',
+   pt:'— Fica à direita ou à esquerda da padaria?\n— À esquerda. Vai ver uma placa verde.\n— Tem escada?\n— Não, é plano.',
+   cn:'— 在面包店左边还是右边？\n— 左边，你会看到绿色标牌。\n— 有台阶吗？\n— 没有，是平的。'}
+  ,{id:'d54',title:'推荐附近餐厅',sub:'Pedindo Direções - Restaurante',
+   pt:'— Sabe de um bom restaurante por aqui?\n— Tem um de comida nordestina na esquina.\n— É caro?\n— Preço médio. Vale muito!',
+   cn:'— 知道附近有好餐厅吗？\n— 街角有一家东北菜馆。\n— 贵吗？\n— 中等价位，很值！'}
+  ,{id:'d55',title:'走反了',sub:'Pedindo Direções - Sentido Errado',
+   pt:'— Acho que vim no sentido errado.\n— Calma! Onde você está?\n— Na rua Bela Cintra.\n— Volta dois quarteirões e dobra à direita.',
+   cn:'— 我好像走反了。\n— 别急！你在哪？\n— 在贝拉辛特拉街。\n— 回头走两个街区然后右转。'}
+  ,{id:'d56',title:'问步行距离',sub:'Pedindo Direções - Distância',
+   pt:'— Dá para ir a pé até a Paulista?\n— Dá, mas leva uns vinte minutos.\n— E de metrô?\n— Umas duas estações.',
+   cn:'— 步行能到保利斯塔大道吗？\n— 能，但要二十分钟。\n— 坐地铁呢？\n— 两站。'}
+  ,{id:'d57',title:'问ATM位置',sub:'Pedindo Direções - ATM',
+   pt:'— Tem caixa eletrônico perto?\n— Tem um Bradesco na esquina.\n— Funciona vinte e quatro horas?\n— Funciona, mas às vezes cai à noite.',
+   cn:'— 附近有ATM吗？\n— 街角有台Bradesco的。\n— 二十四小时都可以用吗？\n— 可以，但有时晚上会断。'}
+  ,{id:'d58',title:'问街区安全',sub:'Pedindo Direções - Segurança',
+   pt:'— Esse bairro é seguro?\n— De dia é tranquilo. À noite melhor não andar sozinho.\n— Tem transporte?\n— Tem metrô, ônibus e bastante Uber.',
+   cn:'— 这个街区安全吗？\n— 白天很安静，晚上不要独自行走。\n— 有交通吗？\n— 有地铁、公交和很多Uber。'}
+  ,{id:'d59',title:'指路领事馆',sub:'Indicando Direções',
+   pt:'— Você sabe onde fica o consulado chinês?\n— Vai pela Paulista, passa o MASP e dobra à direita.\n— É longe?\n— Uns quinze minutos a pé.',
+   cn:'— 你知道中国领事馆在哪里吗？\n— 沿保利斯塔走，过MASP，右转。\n— 远吗？\n— 步行约十五分钟。'}
+  ,{id:'d60',title:'预约看诊',sub:'No Hospital - Consulta',
+   pt:'— Bom dia, quero marcar uma consulta.\n— Com qual especialidade?\n— Clínico geral.\n— Preferência de horário?\n— De manhã, se possível.',
+   cn:'— 早上好，我想预约看诊。\n— 哪个科？\n— 全科医生。\n— 有偏好的时间吗？\n— 如果可以的话，早上。'}
+  ,{id:'d61',title:'急诊室',sub:'Pronto-Socorro',
+   pt:'— Meu filho está com febre muito alta!\n— Que temperatura?\n— Trinta e nove e oito.\n— Pode entrar, vai ser atendido agora.',
+   cn:'— 我儿子发高烧！\n— 体温多少？\n— 三十九度八。\n— 请进来，现在就诊。'}
+  ,{id:'d62',title:'描述症状',sub:'No Hospital - Sintomas',
+   pt:'— Onde você sente dor?\n— Na barriga, do lado direito.\n— Desde quando?\n— Desde ontem. Piora quando como.\n— Vou pedir exames.',
+   cn:'— 你哪里痛？\n— 肚子右侧。\n— 从什么时候开始？\n— 从昨天，吃东西会加剧。\n— 我会开检查。'}
+  ,{id:'d63',title:'买非处方药',sub:'Na Farmácia - Sem Receita',
+   pt:'— Tem remédio para tosse sem receita?\n— Temos o Vick e o Benegrip.\n— Qual para tosse seca?\n— O Vick para tosse seca.',
+   cn:'— 有不需要处方的止咳药吗？\n— 我们有Vick和Benegrip。\n— 哪个适合干咳？\n— Vick的干咳款。'}
+  ,{id:'d64',title:'处方药缺货',sub:'Na Farmácia - Receita',
+   pt:'— Aqui está minha receita.\n— Esse medicamento não temos em estoque.\n— Tem farmácia próxima?\n— Tenta a Drogaria São Paulo na avenida.',
+   cn:'— 这是我的处方。\n— 这个药我们没有库存。\n— 附近哪家药店有？\n— 试试大道上的São Paulo药店。'}
+  ,{id:'d65',title:'量血压',sub:'Na Farmácia - Pressão',
+   pt:'— Vocês medem pressão?\n— Medimos, é gratuito. Pode sentar ali.\n— Estou sentindo a cabeça pesada.\n— Cento e quarenta por oitenta. Recomendo ver médico.',
+   cn:'— 你们这里量血压吗？\n— 量的，免费，请坐那边。\n— 我头有点沉。\n— 140/80，稍高，建议看医生。'}
+  ,{id:'d66',title:'儿童药剂量',sub:'Na Farmácia - Dosagem',
+   pt:'— Posso dar para criança de cinco anos?\n— Quanto ela pesa?\n— Dezoito quilos.\n— Pode dar a dose pediátrica, metade da adulta.',
+   cn:'— 这个药可以给五岁小孩吃吗？\n— 孩子多重？\n— 十八公斤。\n— 可以用儿童剂量，成人一半。'}
+  ,{id:'d67',title:'药副作用',sub:'Na Farmácia - Efeitos',
+   pt:'— Esse remédio tem efeitos colaterais?\n— Pode causar sonolência.\n— Posso tomar com estômago vazio?\n— Melhor depois das refeições.',
+   cn:'— 这个药有副作用吗？\n— 可能会犯困。\n— 可以空腹吃吗？\n— 最好饭后服用。'}
+  ,{id:'d68',title:'医保报销',sub:'No Hospital - Convênio',
+   pt:'— Vocês aceitam Unimed?\n— Aceitamos. Tem a carteirinha?\n— Tenho. Vai cobrir a consulta?\n— A consulta sim, exames podem ter coparticipação.',
+   cn:'— 你们接受Unimed医保吗？\n— 接受，有保险卡吗？\n— 有，会覆盖看诊费吗？\n— 看诊费覆盖，检查可能需要自付。'}
+
+  ,{id:'d69',title:'取检查结果',sub:'No Hospital - Resultado',
+   pt:'— Vim pegar o resultado dos meus exames.\n— Seu nome?\n— Zhang Wenle.\n— Um momento. O médico vai te chamar para explicar.',
+   cn:'— 我来取检查结果。\n— 您的名字？\n— 张文乐。\n— 一会儿，医生会叫您解释结果。'}
+  ,{id:'d70',title:'银行开户',sub:'No Banco - Abertura de Conta',
+   pt:'— Quero abrir uma conta corrente.\n— Tem CPF e comprovante de residência?\n— Tenho os dois aqui.\n— Ótimo! Senta aqui que vou te ajudar.',
+   cn:'— 我想开一个活期账户。\n— 有CPF和居住证明吗？\n— 两份文件都有。\n— 太好了！坐这里我来帮您。'}
+  ,{id:'d71',title:'银行取钱',sub:'No Banco - Saque',
+   pt:'— Quero sacar duzentos reais.\n— Pode me dar em notas menores?\n— Posso dar em vinte reais. Serve?\n— Serve, obrigado.',
+   cn:'— 我想取两百雷亚尔。\n— 可以给我小额钞票吗？\n— 可以给你二十雷亚尔的，可以吗？\n— 可以，谢谢。'}
+  ,{id:'d72',title:'Pix转账',sub:'No Banco - Pix',
+   pt:'— Como faço um Pix?\n— Entra no app, clica em Pix e coloca a chave do destinatário.\n— A chave pode ser o CPF?\n— Pode ser CPF, telefone, e-mail ou chave aleatória.',
+   cn:'— 怎么用Pix转账？\n— 进银行APP，点击Pix，输入收款人密钥。\n— 密钥可以用CPF吗？\n— 可以用CPF、电话、邮箱或随机密钥。'}
+  ,{id:'d73',title:'银行转账',sub:'No Banco - Transferência',
+   pt:'— Quero fazer uma transferência para conta Bradesco.\n— Tem o número da conta e agência?\n— Tenho aqui no celular.\n— Pode me passar os dados.',
+   cn:'— 我想转账到一个Bradesco账户。\n— 有账号和支行号吗？\n— 有，在手机上。\n— 把信息告诉我。'}
+  ,{id:'d74',title:'银行投诉',sub:'No Banco - Reclamação',
+   pt:'— Me cobraram uma tarifa indevida.\n— Pode me passar seu CPF?\n— Aqui está.\n— Se for erro, o valor é estornado em até dois dias.',
+   cn:'— 有一笔费用不应该收我。\n— 可以给我您的CPF吗？\n— 在这里。\n— 如果有误，两天内退款。'}
+  ,{id:'d75',title:'换外币',sub:'No Banco - Câmbio',
+   pt:'— Posso trocar dólar por real aqui?\n— Pode. O dólar está a cinco reais e vinte.\n— Quero trocar cem dólares.\n— Certo, vou processar agora.',
+   cn:'— 这里可以换美元为雷亚尔吗？\n— 可以，今天汇率5.20。\n— 我要换一百美元。\n— 好的，我现在处理。'}
+  ,{id:'d76',title:'申请信用卡',sub:'No Banco - Cartão de Crédito',
+   pt:'— Quero solicitar um cartão de crédito.\n— Tem renda comprovada?\n— Tenho holerite dos últimos três meses.\n— A análise demora até cinco dias úteis.',
+   cn:'— 我想申请信用卡。\n— 有收入证明吗？\n— 有最近三个月的工资单。\n— 审核需要最多五个工作日。'}
+  ,{id:'d77',title:'卡被ATM吞了',sub:'No Banco - Cartão Retido',
+   pt:'— O caixa eletrônico reteve meu cartão!\n— Calma, acontece às vezes.\n— Como eu recupero?\n— Vem ao balcão com um documento.',
+   cn:'— ATM把我的卡吞了！\n— 别慌，偶尔会发生。\n— 怎么取回来？\n— 带证件来柜台处理。'}
+  ,{id:'d78',title:'查账单',sub:'No Banco - Extrato',
+   pt:'— Quero ver o extrato dos últimos trinta dias.\n— Quer impresso ou no aplicativo?\n— Pode me imprimir, por favor.\n— Claro, um momento.',
+   cn:'— 我想查最近三十天的账单。\n— 要打印版还是在APP查？\n— 请帮我打印。\n— 好的，一会儿。'}
+  ,{id:'d79',title:'国际汇款',sub:'No Banco - Remessa Internacional',
+   pt:'— Quero mandar dinheiro para a China.\n— Temos serviço de remessa internacional.\n— Qual é a taxa?\n— Para até mil dólares, trinta reais de tarifa.',
+   cn:'— 我想给中国汇款。\n— 我们有国际汇款服务。\n— 手续费多少？\n— 一千美元以内收三十雷亚尔手续费。'}
+  ,{id:'d80',title:'看公寓',sub:'Aluguel - Visita',
+   pt:'— Vi o anúncio do apartamento. Ainda está disponível?\n— Está! Posso te mostrar agora?\n— Pode. Tem dois quartos?\n— Tem, e um banheiro, sala e cozinha americana.',
+   cn:'— 我看到公寓广告了，还有空吗？\n— 有！现在带你看可以吗？\n— 可以，有两室吗？\n— 有，一卫、客厅和开放式厨房。'}
+  ,{id:'d81',title:'谈租金',sub:'Aluguel - Preço',
+   pt:'— Qual é o valor do aluguel?\n— Dois mil e duzentos por mês.\n— Inclui água e luz?\n— Inclui água. Luz é separada, uns oitenta reais.',
+   cn:'— 租金是多少？\n— 每月两千两百雷亚尔。\n— 包括水电吗？\n— 包含水费，电费单算，约八十雷亚尔。'}
+  ,{id:'d82',title:'问租期',sub:'Aluguel - Contrato',
+   pt:'— Qual é o prazo mínimo?\n— Trinta meses.\n— Posso sair antes?\n— Pode, mas há multa de três meses de aluguel.',
+   cn:'— 合同最短租期是多少？\n— 三十个月。\n— 可以提前退租吗？\n— 可以，但要支付三个月租金的违约金。'}
+  ,{id:'d83',title:'问家具',sub:'Aluguel - Mobília',
+   pt:'— O apartamento é mobiliado?\n— É semi-mobiliado. Tem armários, fogão e geladeira.\n— Não tem cama?\n— Não, você traz a cama.',
+   cn:'— 公寓有家具吗？\n— 半装修，有柜子、炉灶和冰箱。\n— 没有床吗？\n— 没有，床需要自己带。'}
+  ,{id:'d84',title:'问入住条件',sub:'Aluguel - Documentos',
+   pt:'— Quais documentos preciso?\n— CPF, comprovante de renda e referências.\n— Precisa de fiador?\n— Pode ser fiador ou seguro-fiança.',
+   cn:'— 需要什么文件？\n— CPF、收入证明和个人背调。\n— 需要担保人吗？\n— 可以是担保人或房租保险。'}
+  ,{id:'d85',title:'报修',sub:'Aluguel - Manutenção',
+   pt:'— A torneira do banheiro está pingando.\n— Vou mandar o encanador amanhã.\n— E a tomada da cozinha não funciona.\n— Também vou verificar. Que horas fica em casa?\n— A partir das seis da tarde.',
+   cn:'— 浴室水龙头在滴水。\n— 我明天派水管工来。\n— 厨房的插座也不工作。\n— 我也会检查的，几点在家？\n— 下午六点以后。'}
+  ,{id:'d86',title:'问停车位',sub:'Aluguel - Garagem',
+   pt:'— Tem vaga de garagem?\n— Tem uma vaga incluída. A mais é duzentos por mês.\n— E condomínio?\n— Quatrocentos reais por mês.',
+   cn:'— 有停车位吗？\n— 有一个包含，多的每月两百雷亚尔。\n— 物业费多少？\n— 每月四百雷亚尔。'}
+  ,{id:'d87',title:'退租',sub:'Aluguel - Rescisão',
+   pt:'— Quero entregar o apartamento no mês que vem.\n— Precisa avisar com trinta dias de antecedência.\n— Estou avisando agora.\n— Tudo bem. Vamos agendar uma vistoria.',
+   cn:'— 我想下个月退房。\n— 需要提前三十天通知。\n— 我现在通知了。\n— 好的，我们安排验房。'}
+  ,{id:'d88',title:'问宠物政策',sub:'Aluguel - Animais',
+   pt:'— Posso ter cachorro no apartamento?\n— Pode, mas no elevador precisa de focinheira.\n— De que porte?\n— Qualquer porte é bem-vindo.',
+   cn:'— 公寓可以养狗吗？\n— 可以，但在电梯里要戴嘴套。\n— 什么体型的？\n— 任何体型都欢迎。'}
+  ,{id:'d89',title:'退押金',sub:'Aluguel - Caução',
+   pt:'— Quando recebo o caução de volta?\n— Após a vistoria, em até trinta dias.\n— Se tiver algum dano?\n— O valor dos reparos é descontado.',
+   cn:'— 什么时候退押金？\n— 验房后，最多三十天。\n— 如果有损坏呢？\n— 维修费用从押金中扣除。'}
+  ,{id:'d90',title:'面试自我介绍',sub:'Entrevista - Apresentação',
+   pt:'— Pode se apresentar?\n— Claro. Me chamo Zhang, tenho cinco anos de experiência em gestão.\n— E experiência com o mercado brasileiro?\n— Trabalhei dois anos em São Paulo.',
+   cn:'— 能自我介绍一下吗？\n— 当然，我叫张，有五年管理经验。\n— 对巴西市场有经验吗？\n— 我在圣保罗参与了两年的项目。'}
+  ,{id:'d91',title:'问薪资',sub:'Entrevista - Salário',
+   pt:'— Qual é sua pretensão salarial?\n— Entre doze e quinze mil reais.\n— Está dentro da nossa faixa. E benefícios?\n— Vale-transporte e plano de saúde são importantes.',
+   cn:'— 您的薪资期望是多少？\n— 一万二到一万五雷亚尔之间。\n— 在我们范围内，福利方面有期望吗？\n— 交通补贴和医疗保险对我很重要。'}
+  ,{id:'d92',title:'问工作内容',sub:'Entrevista - Responsabilidades',
+   pt:'— Quais seriam minhas principais responsabilidades?\n— Gestão de equipe, análise de dados e reuniões com parceiros.\n— Vai ter viagens?\n— Sim, eventualmente pelo estado.',
+   cn:'— 我的主要职责是什么？\n— 团队管理、数据分析和与合作方开会。\n— 需要出差吗？\n— 是的，偶尔在州内出差。'}
+  ,{id:'d93',title:'面试结果',sub:'Entrevista - Resultado',
+   pt:'— Quando posso esperar uma resposta?\n— Até sexta-feira daremos um retorno.\n— Obrigado pela entrevista.\n— Também agradeço. Sua experiência foi muito relevante.',
+   cn:'— 什么时候能得到回复？\n— 周五之前会给您答复。\n— 感谢这次面试机会。\n— 也感谢您，您的经验非常相关。'}
+  ,{id:'d94',title:'问工作文化',sub:'Entrevista - Cultura',
+   pt:'— Como é a cultura da empresa?\n— É bem dinâmica, trabalhamos muito em equipe.\n— Tem home office?\n— Modelo híbrido, três dias no escritório.',
+   cn:'— 公司文化怎么样？\n— 很有活力，非常注重团队合作。\n— 有远程工作吗？\n— 混合模式，每周三天在办公室。'}
+  ,{id:'d95',title:'谈工作经验',sub:'Entrevista - Experiência',
+   pt:'— Já trabalhou em startup?\n— Sim, dois anos numa fintech em expansão.\n— O que aprendeu?\n— Aprendi a trabalhar com agilidade e tomar decisões rápidas.',
+   cn:'— 在创业公司工作过吗？\n— 是的，在一家金融科技待了两年。\n— 学到了什么？\n— 我学会了敏捷工作和快速决策。'}
+  ,{id:'d96',title:'候选人提问',sub:'Entrevista - Perguntas',
+   pt:'— Tem alguma pergunta para a gente?\n— Sim. Qual é o maior desafio do time?\n— Escalar a operação mantendo qualidade.\n— Esse é exatamente meu ponto forte.',
+   cn:'— 您有什么问题要问我们吗？\n— 有，团队现在最大的挑战是什么？\n— 在保持质量的同时扩大规模。\n— 这正好是我的强项。'}
+  ,{id:'d97',title:'线上面试',sub:'Entrevista - Online',
+   pt:'— A entrevista vai ser por vídeo?\n— Vai, pelo Google Meet. Você tem acesso?\n— Tenho. Que horas?\n— Às quatorze horas de amanhã.\n— Confirmado.',
+   cn:'— 面试是视频形式吗？\n— 是的，通过Google Meet，您能用吗？\n— 能，几点？\n— 明天下午两点。\n— 确认了。'}
+  ,{id:'d98',title:'问试用期',sub:'Entrevista - Experiência Profissional',
+   pt:'— Qual é o período de experiência?\n— Noventa dias, conforme a lei.\n— Posso ser efetivado antes?\n— Sim, se o desempenho for excelente.',
+   cn:'— 试用期多长？\n— 九十天，按法律规定。\n— 可以提前转正吗？\n— 可以，如果表现出色可以提前。'}
+  ,{id:'d99',title:'签合同',sub:'Entrevista - Contrato',
+   pt:'— Quando assino o contrato?\n— Na segunda-feira, traga documento e CPF.\n— E quando começo?\n— Na mesma semana, na quarta-feira.',
+   cn:'— 什么时候签合同？\n— 周一，带身份证和CPF来。\n— 什么时候开始工作？\n— 同周的周三。'}
+  ,{id:'d100',title:'开手机套餐',sub:'Telefone - Plano',
+   pt:'— Quero ativar um plano de celular.\n— Pré ou pós-pago?\n— Pós-pago. Qual tem mais dados?\n— O plano de cinquenta reais dá vinte gigas por mês.',
+   cn:'— 我想开通手机套餐。\n— 预付费还是后付费？\n— 后付费，哪个流量最多？\n— 五十雷亚尔的套餐每月二十GB。'}
+  ,{id:'d101',title:'网络故障',sub:'Internet - Problema',
+   pt:'— Minha internet está fora.\n— Há quanto tempo?\n— Desde essa manhã.\n— Tem instabilidade na sua região. Normaliza em duas horas.',
+   cn:'— 我的网络断了。\n— 断多久了？\n— 从今天早上开始。\n— 您那个区域有故障，两小时内恢复。'}
+  ,{id:'d102',title:'手机没信号',sub:'Telefone - Sem Sinal',
+   pt:'— Meu celular está sem sinal aqui.\n— Às vezes aqui dentro pega mal. Tenta perto da janela.\n— Consegui! Aqui tá pegando.\n— É, a antena fica mais perto.',
+   cn:'— 我在这里没有信号。\n— 有时室内信号不好，试试靠近窗边。\n— 有了！这里有信号。\n— 对，天线离得更近。'}
+  ,{id:'d103',title:'续费套餐',sub:'Telefone - Recarga',
+   pt:'— Meu plano vence amanhã. Como renovo?\n— Pelo aplicativo ou em qualquer ponto de recarga.\n— Tem promoção?\n— Se renovar hoje ganha cinco gigas extras.',
+   cn:'— 我的套餐明天到期，怎么续费？\n— 通过APP或任意充值点。\n— 有续费优惠吗？\n— 今天续费额外赠送五GB。'}
+  ,{id:'d104',title:'手机进水',sub:'Telefone - Assistência Técnica',
+   pt:'— Meu celular caiu na água e parou de funcionar.\n— Tem seguro?\n— Não tenho.\n— O conserto vai custar entre duzentos e quinhentos reais.',
+   cn:'— 我的手机掉水里不工作了。\n— 有保险吗？\n— 没有。\n— 修理费用在两百到五百雷亚尔之间。'}
+  ,{id:'d105',title:'号码携转',sub:'Telefone - Portabilidade',
+   pt:'— Posso transferir meu número para outra operadora?\n— Pode, é a portabilidade numérica.\n— Demora quanto?\n— Até três dias úteis.',
+   cn:'— 我可以把号码转到另一家运营商吗？\n— 可以，这叫号码携转。\n— 需要多长时间？\n— 最多三个工作日。'}
+  ,{id:'d106',title:'申请宽带',sub:'Internet - Banda Larga',
+   pt:'— Quero contratar internet em casa.\n— Qual velocidade precisa?\n— Uns duzentos megas.\n— Temos plano de cento e oitenta reais com duzentos megas.',
+   cn:'— 我想在家里安装宽带。\n— 您需要多快的速度？\n— 大约两百兆。\n— 我们有每月一百八十雷亚尔的两百兆套餐。'}
+  ,{id:'d107',title:'网速慢',sub:'Internet - Velocidade',
+   pt:'— Minha internet está muito lenta.\n— Já reiniciou o roteador?\n— Já, mas continua lenta.\n— Vou verificar. Tem lentidão na sua área hoje.',
+   cn:'— 我的网速非常慢。\n— 重启路由器了吗？\n— 重启了，但还是慢。\n— 我来检查，您那区域今天有网速问题。'}
+  ,{id:'d108',title:'视频会议进入',sub:'Telefone - Videoconferência',
+   pt:'— Como entro no Google Meet?\n— Você recebeu o link por e-mail. É só clicar.\n— Não recebi.\n— Posso reenviar. Qual é seu e-mail?',
+   cn:'— 怎么进入Google Meet？\n— 您收到邮件里的链接了，点击就行。\n— 我没收到。\n— 我现在重新发，您的邮箱是什么？'}
+  ,{id:'d109',title:'举报诈骗电话',sub:'Telefone - Golpe',
+   pt:'— Recebi ligação pedindo dados do banco.\n— Não passe dados por telefone! É golpe.\n— Já desliguei.\n— Se passou algum dado, avisa o banco imediatamente.',
+   cn:'— 我接到一个要我银行信息的电话。\n— 不要通过电话提供信息！这是诈骗。\n— 我已经挂了。\n— 如果提供了任何信息，立即联系银行。'}
+  ,{id:'d110',title:'剪发',sub:'No Salão - Corte',
+   pt:'— Você tem horário disponível?\n— Tenho. O que vai fazer?\n— Cortar o cabelo, mais curto dos lados.\n— Degrade ou corte reto?\n— Degrade, por favor.',
+   cn:'— 现在有空档吗？\n— 有，您想做什么？\n— 我想剪头发，两侧剪短一点。\n— 渐变还是直剪？\n— 渐变，谢谢。'}
+  ,{id:'d111',title:'染发',sub:'No Salão - Coloração',
+   pt:'— Quero pintar o cabelo de loiro.\n— Tem o cabelo clareado antes?\n— Não, está natural.\n— Vai precisar descolorir primeiro. Umas três horas.\n— Tudo bem, vou esperar.',
+   cn:'— 我想把头发染成金色。\n— 之前有漂白过吗？\n— 没有，是自然发色。\n— 需要先漂白，大约三小时。\n— 没关系，我等。'}
+  ,{id:'d112',title:'做指甲',sub:'No Salão - Unhas',
+   pt:'— Quero fazer as unhas.\n— Manicure simples ou com gel?\n— Com gel, por favor.\n— Que cor você quer?\n— Rosa claro.',
+   cn:'— 我想做指甲。\n— 普通美甲还是凝胶？\n— 凝胶的，谢谢。\n— 想要什么颜色？\n— 浅粉色。'}
+  ,{id:'d113',title:'头发护理',sub:'No Salão - Hidratação',
+   pt:'— Meu cabelo está muito ressecado. Tem tratamento?\n— Temos hidratação profunda, quarenta minutos.\n— Quanto custa?\n— Oitenta reais.',
+   cn:'— 我的头发非常干燥，有护理服务吗？\n— 我们有深层护理，需要四十分钟。\n— 多少钱？\n— 八十雷亚尔。'}
+  ,{id:'d114',title:'剃胡子',sub:'No Salão - Barba',
+   pt:'— Faz barba também?\n— Fazemos sim. Quer com navalha?\n— Pode ser. Quanto tempo?\n— Uns vinte minutos.',
+   cn:'— 也做剃须吗？\n— 做的，要用剃刀吗？\n— 可以，要多久？\n— 大约二十分钟。'}
+  ,{id:'d115',title:'预约美发',sub:'No Salão - Agendamento',
+   pt:'— Quero agendar para sábado.\n— Que horas?\n— Às dez da manhã.\n— Tem às dez e meia. Serve?\n— Serve sim!',
+   cn:'— 我想预约周六。\n— 您偏好几点？\n— 早上十点。\n— 十点半有空，可以吗？\n— 可以！'}
+  ,{id:'d116',title:'美发产品推荐',sub:'No Salão - Produtos',
+   pt:'— Qual shampoo para cabelo oleoso?\n— Esse de ervas é ótimo, controla a oleosidade.\n— É caro?\n— Trinta e cinco reais. Vale cada centavo!',
+   cn:'— 哪款洗发水适合油性发质？\n— 这款草药的很好，能控制油脂。\n— 贵吗？\n— 三十五雷亚尔，非常值！'}
+  ,{id:'d117',title:'脱发问题',sub:'No Salão - Queda de Cabelo',
+   pt:'— Estou perdendo muito cabelo. Tem tratamento?\n— Tenho um produto que fortalece o couro cabeludo.\n— Precisa de receita?\n— Não, é de venda livre.',
+   cn:'— 我掉了很多头发，有治疗方法吗？\n— 我推荐一款强化头皮的产品。\n— 需要处方吗？\n— 不需要，可以直接购买。'}
+  ,{id:'d118',title:'spa按摩',sub:'No Salão - Massagem',
+   pt:'— Vocês fazem massagem?\n— Fazemos relaxante de sessenta minutos.\n— Inclui produto?\n— Inclui óleo essencial. Você escolhe o aroma.',
+   cn:'— 你们做按摩吗？\n— 我们做六十分钟的放松按摩。\n— 包含产品吗？\n— 包含精油，您可以选择香味。'}
+  ,{id:'d119',title:'美甲嵌甲',sub:'No Salão - Unhas Encravadas',
+   pt:'— Estou com uma unha encravada.\n— Preciso examinar primeiro.\n— Vai doer?\n— Posso aplicar gel anestésico para ajudar.',
+   cn:'— 我有一个嵌甲。\n— 我需要先检查一下。\n— 会痛吗？\n— 我可以涂麻醉凝胶帮助缓解。'}
+  ,{id:'d120',title:'健身房入会',sub:'Na Academia - Matrícula',
+   pt:'— Quero me matricular aqui.\n— Temos planos mensais e anuais.\n— Quanto é o mensal?\n— Oitenta reais com acesso ilimitado e aulas inclusas.',
+   cn:'— 我想在这里入会。\n— 我们有月卡和年卡。\n— 月卡多少钱？\n— 八十雷亚尔，无限次进入，含课程。'}
+  ,{id:'d121',title:'健身器械',sub:'Na Academia - Equipamentos',
+   pt:'— Como funciona essa esteira?\n— Aperta o verde para ligar, esse controla a velocidade.\n— Tem inclinação?\n— Tem sim, esse botão ali. Começa devagar!',
+   cn:'— 这个跑步机怎么用？\n— 按绿色开机，这个控制速度。\n— 有坡度吗？\n— 有，那个按钮，慢慢来！'}
+  ,{id:'d122',title:'请私教',sub:'Na Academia - Personal Trainer',
+   pt:'— Tem personal trainer?\n— Tem. Quer fazer uma avaliação física primeiro?\n— Quero. Quanto custa?\n— A avaliação é grátis para novos alunos.',
+   cn:'— 有私人教练可以请吗？\n— 有，您想先做体能评估吗？\n— 想，多少钱？\n— 新会员评估免费。'}
+  ,{id:'d123',title:'问课程表',sub:'Na Academia - Aulas',
+   pt:'— Que aulas têm essa semana?\n— Spinning segunda e quarta, funcional terça e quinta, yoga sexta.\n— Precisa reservar?\n— Precisa sim, pelo app da academia.',
+   cn:'— 这周有什么课程？\n— 周一三动感单车，周二四功能训练，周五瑜伽。\n— 需要预约吗？\n— 需要，通过健身房APP预约。'}
+  ,{id:'d124',title:'运动损伤',sub:'Na Academia - Lesão',
+   pt:'— Machiei meu joelho fazendo agachamento.\n— Para de treinar agora. Vou chamar o educador físico.\n— É grave?\n— Precisa de gelo e talvez avaliação médica.',
+   cn:'— 我做深蹲时弄伤了膝盖。\n— 现在停止训练，我去叫体育教练。\n— 严重吗？\n— 需要冰敷，可能需要看医生。'}
+  ,{id:'d125',title:'冻结会籍',sub:'Na Academia - Congelamento',
+   pt:'— Posso congelar meu plano por um mês?\n— Pode, é um congelamento por ano.\n— Precisa de documento?\n— Só preenche o formulário na recepção.',
+   cn:'— 我可以冻结会籍一个月吗？\n— 可以，每年一次冻结机会。\n— 需要什么文件吗？\n— 只需在前台填写表格。'}
+  ,{id:'d126',title:'锁柜使用',sub:'Na Academia - Armário',
+   pt:'— Como uso o armário?\n— Coloca um cadeado seu ou aluga o nosso por dois reais.\n— Posso deixar minha mochila?\n— Pode, mas não nos responsabilizamos por objetos de valor.',
+   cn:'— 储物柜怎么用？\n— 用自己的锁或租我们的，两雷亚尔。\n— 我可以把背包放那里吗？\n— 可以，但贵重物品我们不负责。'}
+  ,{id:'d127',title:'健身目标',sub:'Na Academia - Objetivo',
+   pt:'— Qual é seu objetivo?\n— Quero perder cinco quilos e ganhar massa.\n— Precisa combinar musculação com cardio.\n— O personal pode montar um treino para mim?',
+   cn:'— 你的健身目标是什么？\n— 我想减掉五公斤并增肌。\n— 需要结合力量训练和有氧运动。\n— 私教能帮我制定训练计划吗？'}
+  ,{id:'d128',title:'健身问营养',sub:'Na Academia - Nutrição',
+   pt:'— Vocês têm nutricionista?\n— Temos uma que atende às terças.\n— Proteína em pó vocês vendem?\n— Vendemos no balcão, várias marcas.',
+   cn:'— 你们有营养师吗？\n— 我们有合作营养师，周二出诊。\n— 你们卖蛋白粉吗？\n— 柜台有卖，多种品牌。'}
+  ,{id:'d129',title:'运动后聊天',sub:'Na Academia - Conversa',
+   pt:'— Que treino pesado hoje!\n— É sempre assim na segunda. Você malha todo dia?\n— Quase todos. Final de semana descanso.\n— Igual a mim!',
+   cn:'— 今天训练真辛苦！\n— 周一总是这样，你每天都来吗？\n— 几乎每天，周末休息。\n— 跟我一样！'}
+  ,{id:'d130',title:'问尺码',sub:'Loja - Tamanho',
+   pt:'— Tem esse modelo no tamanho M?\n— Vou verificar no estoque.\n— Obrigado.\n— Só temos P e G. Quer experimentar o G?',
+   cn:'— 这款有M码吗？\n— 我去仓库查一下。\n— 谢谢。\n— 只有S和L，您要试L吗？'}
+  ,{id:'d131',title:'试衣间',sub:'Loja - Provador',
+   pt:'— Posso experimentar essa calça?\n— Pode! O provador é ali no fundo.\n— Posso levar mais de uma peça?\n— Pode levar até cinco peças.',
+   cn:'— 我可以试试这条裤子吗？\n— 当然！试衣间在里面。\n— 我可以带多件吗？\n— 最多可以带五件。'}
+  ,{id:'d132',title:'退换货',sub:'Loja - Troca',
+   pt:'— Quero trocar essa camisa. Comprei ontem, está com defeito.\n— Tem nota fiscal e etiqueta?\n— Tenho os dois.\n— Pode escolher outro de igual valor.',
+   cn:'— 我想换这件衬衫，昨天买的，有问题。\n— 有发票和标签吗？\n— 两个都有。\n— 可以选择等值的其他商品。'}
+  ,{id:'d133',title:'问折扣',sub:'Loja - Desconto',
+   pt:'— Tem promoção hoje?\n— Compra dois itens, leva o terceiro com cinquenta por cento.\n— Vale para toda a loja?\n— Vale tudo, exceto nova coleção.',
+   cn:'— 今天有优惠吗？\n— 买两件第三件半价。\n— 全店适用吗？\n— 适用全部，除了新款。'}
+  ,{id:'d134',title:'问材质',sub:'Loja - Tecido',
+   pt:'— Qual é o material dessa blusa?\n— É cem por cento algodão orgânico.\n— Encolhe na lavagem?\n— Não, já é pré-lavada. Pode lavar à máquina.',
+   cn:'— 这件上衣是什么材质？\n— 百分之百有机棉。\n— 洗了会缩水吗？\n— 不会，已经预洗过了，可以机洗。'}
+  ,{id:'d135',title:'买运动服',sub:'Loja - Roupa de Academia',
+   pt:'— Estou procurando calça legging para malhar.\n— Essas são de compressão alta, ótimas para treino.\n— Tem em preto?\n— Tem preto, cinza e azul marinho.',
+   cn:'— 我在找一条健身用的紧身裤。\n— 这些是高压缩的，非常适合训练。\n— 有黑色的吗？\n— 有黑色、灰色和深蓝色。'}
+  ,{id:'d136',title:'买鞋',sub:'Loja - Calçados',
+   pt:'— Tem esse tênis no número quarenta e dois?\n— É para esporte ou casual?\n— Casual.\n— Esse modelo é ótimo para o dia a dia.',
+   cn:'— 这款鞋有42码吗？\n— 是运动用还是休闲？\n— 休闲的。\n— 这款非常适合日常。'}
+  ,{id:'d137',title:'网购店内取货',sub:'Loja - Retirada Online',
+   pt:'— Comprei pelo site e escolhi retirar na loja.\n— O número do pedido?\n— SP-2024-089234.\n— Encontrei! Está aqui separado para você.',
+   cn:'— 我在网上购买了，选择了店内取货。\n— 订单号？\n— SP-2024-089234。\n— 找到了！已经为您备好了。'}
+  ,{id:'d138',title:'买礼物',sub:'Loja - Presente',
+   pt:'— Estou procurando presente para minha mãe.\n— Ela prefere confortável ou elegante?\n— Confortável, ela gosta de vestidos.\n— Temos vestidos de linho novos que chegaram semana passada.',
+   cn:'— 我在为我妈妈找礼物。\n— 她喜欢舒适的还是优雅的？\n— 舒适的，她喜欢连衣裙。\n— 我们有上周到货的新款亚麻连衣裙。'}
+  ,{id:'d139',title:'问补货',sub:'Loja - Estoque',
+   pt:'— Vocês vão repor esse item?\n— Já pedimos ao fornecedor. Chega em duas semanas.\n— Posso fazer reserva?\n— Pode! Deixa seu nome e telefone.',
+   cn:'— 这款会补货吗？\n— 我们已经向供应商订了，两周内到。\n— 我可以预订吗？\n— 可以！留下您的名字和电话。'}
+  ,{id:'d140',title:'寄包裹',sub:'No Correio - Envio',
+   pt:'— Quero mandar esse pacote para o Rio.\n— Vai por Sedex ou PAC?\n— Qual é mais rápido?\n— Sedex chega em dois dias úteis. PAC em cinco.',
+   cn:'— 我想把这个包裹寄到里约。\n— 用Sedex还是PAC？\n— 哪个更快？\n— Sedex两个工作日，PAC五天。'}
+  ,{id:'d141',title:'查包裹状态',sub:'No Correio - Rastreamento',
+   pt:'— Meu pacote não chegou. O código é BR123456789.\n— Está em trânsito em São Paulo desde ontem.\n— Quando chega?\n— Previsão é amanhã até as oito da noite.',
+   cn:'— 我的包裹还没到，追踪号BR123456789。\n— 昨天起在圣保罗转运中。\n— 什么时候到？\n— 预计明天晚上八点前。'}
+  ,{id:'d142',title:'取包裹通知',sub:'No Correio - Aviso',
+   pt:'— Recebi aviso de tentativa de entrega.\n— Pode retirar aqui com documento.\n— Por quanto tempo fica guardado?\n— Sete dias corridos.',
+   cn:'— 我收到了投递失败通知。\n— 可以带证件来网点取。\n— 保存多久？\n— 七个自然日。'}
+  ,{id:'d143',title:'包裹损坏',sub:'No Correio - Danificado',
+   pt:'— Meu pacote chegou amassado e o produto quebrou.\n— Tem fotos do dano?\n— Tenho aqui.\n— Pode abrir reclamação que indenizamos.',
+   cn:'— 我的包裹到了，是压坏的，产品碎了。\n— 有损坏照片吗？\n— 我有。\n— 可以提交投诉，我们会赔偿。'}
+  ,{id:'d144',title:'邮寄文件',sub:'No Correio - Documentos',
+   pt:'— Quero mandar documentos importantes para outro estado.\n— Recomendo Sedex com AR, tem comprovação de entrega.\n— Quanto custa?\n— Uns dezoito reais dependendo do peso.',
+   cn:'— 我想把重要文件寄到另一个州。\n— 建议用带回执的Sedex，有投递证明。\n— 多少钱？\n— 根据重量约十八雷亚尔。'}
+  ,{id:'d145',title:'寄国际包裹',sub:'No Correio - Internacional',
+   pt:'— Quanto custa mandar para a China?\n— Depende do peso. Quanto pesa?\n— Um quilo e meio.\n— No expresso internacional são uns cento e oitenta reais.',
+   cn:'— 把包裹寄到中国多少钱？\n— 取决于重量，多重？\n— 一公斤半。\n— 国际快递大约一百八十雷亚尔。'}
+  ,{id:'d146',title:'申报包裹内容',sub:'No Correio - Declaração',
+   pt:'— Precisa declarar o que tem dentro?\n— Sim, é obrigatório. O que está enviando?\n— Roupas e um par de sapatos.\n— Pode declarar como uso pessoal.',
+   cn:'— 需要申报包裹里面的东西吗？\n— 是的，这是强制的，您在寄什么？\n— 衣服和一双鞋。\n— 可以申报为个人物品。'}
+  ,{id:'d147',title:'买快递盒子',sub:'No Correio - Embalagem',
+   pt:'— Vocês vendem caixas?\n— Vendemos, vários tamanhos.\n— Preciso de uma para objeto frágil.\n— Temos com proteção de isopor, dois reais.',
+   cn:'— 你们卖纸箱吗？\n— 卖的，有各种尺寸。\n— 我需要一个放易碎品的。\n— 我们有带泡沫保护的，两雷亚尔。'}
+  ,{id:'d148',title:'确认投递',sub:'No Correio - Entrega',
+   pt:'— Vocês entregam no meu endereço?\n— Entregamos. Se não tiver ninguém, deixamos aviso.\n— Tem entrega noturna?\n— Não temos turno noturno, mas tem caixa postal.',
+   cn:'— 你们会送到我的地址吗？\n— 会的，没人在会留通知。\n— 可以晚上投递吗？\n— 我们没有夜班，但有邮政信箱。'}
+  ,{id:'d149',title:'包裹重量',sub:'No Correio - Peso',
+   pt:'— Meu pacote está dentro do limite?\n— Está com dois quilos e duzentos.\n— Tem limite de peso?\n— Para Sedex é até trinta quilos.',
+   cn:'— 我的包裹在重量限制内吗？\n— 两公斤两百克。\n— 有重量限制吗？\n— Sedex最多三十公斤。'}
+  ,{id:'d150',title:'买电影票',sub:'Cinema - Ingresso',
+   pt:'— Dois ingressos para o filme das vinte horas.\n— Inteira ou meia?\n— Um inteiro e um estudante.\n— Precisará do documento de estudante na entrada.',
+   cn:'— 请给我两张晚上八点那场的票。\n— 全价还是半价？\n— 一张全价，一张学生票。\n— 进场时需要出示学生证。'}
+  ,{id:'d151',title:'选电影座位',sub:'Cinema - Assento',
+   pt:'— Tem assentos no meio?\n— Fileira G, assentos seis e sete.\n— Pode ser. Tem legenda?\n— É dublado, não tem legenda.',
+   cn:'— 影院中间有座位吗？\n— G排6、7号。\n— 可以，有字幕吗？\n— 是配音版，没有字幕。'}
+  ,{id:'d152',title:'电影推荐',sub:'Cinema - Recomendação',
+   pt:'— Qual filme você recomenda?\n— Esse de ação novo está bomba!\n— É para família?\n— É dezesseis anos. Tem criança?\n— Não, somos adultos.',
+   cn:'— 你推荐哪部电影？\n— 那部新动作片很火！\n— 适合全家看吗？\n— 限十六岁以上，有小孩吗？\n— 没有，我们都是成人。'}
+  ,{id:'d153',title:'看足球比赛',sub:'Entretenimento - Futebol',
+   pt:'— Vai assistir o jogo do Corinthians?\n— Vou no estádio com meu amigo.\n— Que horas começa?\n— Às dezoito e trinta. Tem ingresso sobrando se quiser.',
+   cn:'— 要看科林蒂安斯的比赛吗？\n— 要和朋友去体育场。\n— 几点开始？\n— 下午六点半，想去的话还有多余的票。'}
+  ,{id:'d154',title:'看演唱会',sub:'Entretenimento - Show',
+   pt:'— Você vai ao show esse fim de semana?\n— Vou sim! Você conseguiu ingresso?\n— Consegui no site oficial.\n— Quanto custou?\n— Piso, duzentos reais.',
+   cn:'— 这个周末你要去演唱会吗？\n— 要去！你买到票了吗？\n— 在官网买到了。\n— 多少钱？\n— 站区，两百雷亚尔。'}
+  ,{id:'d155',title:'流媒体推荐',sub:'Entretenimento - Streaming',
+   pt:'— Você assiste Netflix?\n— Muito! Tem recomendação?\n— Cidade Invisível, série brasileira, incrível.\n— Vou assistir hoje à noite!',
+   cn:'— 你看Netflix吗？\n— 看很多！你有推荐吗？\n— 《隐形城市》，巴西剧，很棒。\n— 今晚就去看！'}
+  ,{id:'d156',title:'公园散步',sub:'Entretenimento - Parque',
+   pt:'— O Ibirapuera abre no domingo?\n— Das cinco da manhã às dez da noite.\n— Tem estacionamento?\n— Tem vários. O da Avenida Pedro Álvares Cabral é mais fácil.',
+   cn:'— 伊比拉普埃拉公园周日开放吗？\n— 早五点到晚十点。\n— 有停车场吗？\n— 有几个，佩德罗·卡布拉尔大道的最方便。'}
+  ,{id:'d157',title:'找伙伴打球',sub:'Entretenimento - Esporte',
+   pt:'— Você joga tênis?\n— Jogo, mas faz tempo.\n— Quer jogar sábado? Tem quadra perto.\n— Pode ser! Que horas?\n— Às oito da manhã.',
+   cn:'— 你打网球吗？\n— 打，但好久没拿球拍了。\n— 周六想打吗？附近有球场。\n— 好啊！几点？\n— 早上八点。'}
+  ,{id:'d158',title:'游戏推荐',sub:'Entretenimento - Videogame',
+   pt:'— Você joga videogame?\n— Bastante! Tô viciado em Fortnite.\n— Eu prefiro esporte.\n— Também jogo FIFA. Bora online?',
+   cn:'— 你玩电子游戏吗？\n— 玩很多！现在迷上Fortnite了。\n— 我更喜欢体育游戏。\n— 我也玩FIFA，要不要在线一起玩？'}
+  ,{id:'d159',title:'看话剧',sub:'Entretenimento - Teatro',
+   pt:'— Tem teatro bom em São Paulo?\n— O SESC tem programação muito boa.\n— É caro?\n— No SESC tem ingressos sociais bem acessíveis.',
+   cn:'— 圣保罗有好的剧院吗？\n— SESC有很好的节目。\n— 贵吗？\n— SESC有很实惠的社会票。'}
+  ,{id:'d160',title:'学校报名',sub:'Na Escola - Matrícula',
+   pt:'— Quero matricular meu filho no primeiro ano.\n— Qual a idade?\n— Seis anos.\n— Ótimo! Pode trazer certidão de nascimento e comprovante de residência.',
+   cn:'— 我想给我儿子报名一年级。\n— 多大？\n— 六岁。\n— 太好了！带出生证明和居住证明来。'}
+  ,{id:'d161',title:'问课程表',sub:'Na Escola - Matérias',
+   pt:'— Que matérias têm no ensino médio?\n— Português, matemática, ciências, história e inglês.\n— Tem espanhol?\n— Tem optativa no terceiro ano.',
+   cn:'— 高中有哪些科目？\n— 葡语、数学、科学、历史和英语。\n— 也有西班牙语课吗？\n— 三年级有选修课。'}
+  ,{id:'d162',title:'跟老师交流',sub:'Na Escola - Professor',
+   pt:'— Quero falar sobre o desempenho do meu filho.\n— Ele vai bem em português, mas tem dificuldade em matemática.\n— O que faço em casa?\n— Exercícios de adição e subtração todo dia já ajudam.',
+   cn:'— 我想谈谈我儿子的学习情况。\n— 他葡语很好，但数学有困难。\n— 我在家能做什么？\n— 每天练习加减法就很有帮助。'}
+  ,{id:'d163',title:'学校假期',sub:'Na Escola - Férias',
+   pt:'— Quando começa o recesso de julho?\n— No dia quinze, volta no primeiro de agosto.\n— Tem atividades?\n— Temos colônia de férias opcionais.',
+   cn:'— 七月假期什么时候开始？\n— 十五号，八月一号返校。\n— 有活动吗？\n— 我们有可选的夏令营。'}
+  ,{id:'d164',title:'校服购买',sub:'Na Escola - Uniforme',
+   pt:'— Onde compro o uniforme?\n— Na loja parceira aqui do lado.\n— Tem que ser somente lá?\n— O tênis pode ser qualquer um, desde que preto.',
+   cn:'— 在哪里买校服？\n— 在旁边的合作店。\n— 必须在他们那里买吗？\n— 运动鞋随便，只要是黑色就行。'}
+  ,{id:'d165',title:'请假手续',sub:'Na Escola - Falta',
+   pt:'— Minha filha faltou ontem por doença.\n— Precisa trazer atestado médico.\n— Em quanto tempo?\n— Tem até dois dias para regularizar.',
+   cn:'— 我女儿昨天因病缺席了。\n— 需要带医生证明来。\n— 多少时间内？\n— 两天内补交。'}
+  ,{id:'d166',title:'学校转学',sub:'Na Escola - Transferência',
+   pt:'— Quero transferir meu filho para outra escola.\n— Precisa do histórico e do boletim.\n— Quanto tempo demora?\n— A documentação fica pronta em cinco dias úteis.',
+   cn:'— 我想把儿子转到另一所学校。\n— 需要成绩单和学习报告。\n— 要多久？\n— 文件五个工作日内准备好。'}
+  ,{id:'d167',title:'报课外班',sub:'Na Escola - Extracurricular',
+   pt:'— Vocês têm atividades depois das aulas?\n— Temos futebol, dança e informática.\n— A informática tem vaga?\n— Tem, começa semana que vem. Oitenta reais por mês.',
+   cn:'— 你们有课后活动吗？\n— 有足球、舞蹈和计算机课。\n— 计算机课还有名额吗？\n— 有，下周开始，每月八十雷亚尔。'}
+  ,{id:'d168',title:'奖学金',sub:'Na Escola - Bolsa',
+   pt:'— Tem bolsa de estudo?\n— Temos bolsa social para famílias de baixa renda.\n— Como me candidato?\n— Preenche o formulário com comprovante de renda.',
+   cn:'— 有奖学金可以申请吗？\n— 我们有低收入家庭的社会奖学金。\n— 怎么申请？\n— 填写申请表并附收入证明。'}
+  ,{id:'d169',title:'评估方式',sub:'Na Escola - Avaliação',
+   pt:'— Como é a avaliação?\n— Provas bimestrais e trabalhos em grupo.\n— Qual é a nota mínima para passar?\n— Cinco de dez, mais sessenta por cento de presença.',
+   cn:'— 评估方式是怎样的？\n— 每两月一次考试和小组作业。\n— 及格最低分是多少？\n— 十分中五分，出勤率超过60%。'}
+  ,{id:'d170',title:'报警',sub:'Emergência - Polícia',
+   pt:'— Fui roubado. Preciso chamar a polícia.\n— Liga no cento e noventa.\n— Eles vêm aqui?\n— Vêm. Fica nesse local e aguarda.',
+   cn:'— 我被抢劫了，我需要报警。\n— 打190。\n— 他们会来这里吗？\n— 会的，留在原地等候。'}
+  ,{id:'d171',title:'叫救护车',sub:'Emergência - Ambulância',
+   pt:'— Precisamos de ambulância! Alguém desmaiou!\n— Liga no cento e noventa e dois, é o SAMU.\n— Qual o endereço?\n— Rua Augusta, quatrocentos.',
+   cn:'— 我们需要救护车！有人晕倒了！\n— 打192，是SAMU急救。\n— 地址是什么？\n— 奥古斯塔街400号。'}
+  ,{id:'d172',title:'火灾',sub:'Emergência - Incêndio',
+   pt:'— Tem fogo no prédio!\n— Liga no cento e noventa e três, Bombeiros!\n— Já liguei. Como saímos?\n— Use as escadas, nunca o elevador.',
+   cn:'— 楼里着火了！\n— 打193，消防队！\n— 我已经打了，怎么出去？\n— 走楼梯，绝对不要坐电梯。'}
+  ,{id:'d173',title:'报告车祸',sub:'Emergência - Acidente',
+   pt:'— Tive um acidente de carro.\n— Alguém se machucou?\n— Não, só bateu o carro.\n— Chama a polícia de trânsito no cento e noventa e liga pro seguro.',
+   cn:'— 我出车祸了。\n— 有人受伤吗？\n— 没有，只是车碰了。\n— 打190叫交通警察，再联系保险公司。'}
+  ,{id:'d174',title:'丢护照',sub:'Emergência - Passaporte',
+   pt:'— Perdi meu passaporte.\n— Precisa ir ao consulado do seu país.\n— O consulado chinês fica aonde?\n— Na Avenida Paulista. Leva documento e foto.',
+   cn:'— 我把护照弄丢了。\n— 需要去您国家的领事馆。\n— 中国领事馆在哪里？\n— 在保利斯塔大道，带身份证和照片。'}
+  ,{id:'d175',title:'煤气泄漏',sub:'Emergência - Gás',
+   pt:'— Estou sentindo cheiro de gás em casa!\n— Não acende nenhuma luz! Abre as janelas.\n— E chamo quem?\n— Liga para a distribuidora. O número está na conta.',
+   cn:'— 我家里有煤气味！\n— 不要开任何灯！打开窗户。\n— 打给谁？\n— 联系燃气公司，号码在账单上。'}
+  ,{id:'d176',title:'被狗咬了',sub:'Emergência - Mordida',
+   pt:'— Fui mordido por um cachorro.\n— Vai ao pronto-socorro agora para antirrábica.\n— É urgente mesmo?\n— Muito urgente. A raiva é fatal.',
+   cn:'— 我被狗咬了。\n— 现在就去急诊打狂犬疫苗。\n— 真的很紧急吗？\n— 非常紧急，狂犬病是致命的。'}
+  ,{id:'d177',title:'手机没电迷路',sub:'Emergência - Perdido',
+   pt:'— Estou perdido e meu celular está sem bateria.\n— Calma! Onde você estava antes?\n— No metrô Consolação.\n— Fica aqui. Vou te ajudar.',
+   cn:'— 我迷路了，手机没电了。\n— 别慌！你之前在哪里？\n— 在孔苏拉桑地铁站。\n— 留在这里，我来帮你。'}
+  ,{id:'d178',title:'Pix被骗',sub:'Emergência - Golpe',
+   pt:'— Cai num golpe e perdi dois mil reais.\n— Transferiu por Pix?\n— Sim.\n— Vai ao banco agora e pede o bloqueio e o MED.',
+   cn:'— 我被骗了，损失了两千雷亚尔。\n— 是通过Pix转账的？\n— 是的。\n— 现在去银行申请冻结和MED退款机制。'}
+  ,{id:'d179',title:'洪水求救',sub:'Emergência - Enchente',
+   pt:'— A rua encheu e não consigo sair!\n— Fique nos andares mais altos. Não entre na água.\n— Como peço socorro?\n— Liga no cento e noventa e nove, Defesa Civil.',
+   cn:'— 街道被淹了，我出不了门！\n— 待在较高的楼层，不要进入水中。\n— 我怎么求救？\n— 打199，是民防机构。'}
+  ,{id:'d180',title:'约朋友出去',sub:'Amigos - Combinando',
+   pt:'— A gente vai sair esse fim de semana?\n— Vai! Sábado à noite, tá bom?\n— Ótimo. Que horas?\n— A partir das oito. Mando o endereço no grupo.',
+   cn:'— 我们这个周末要出去吗？\n— 要！周六晚上怎么样？\n— 很好，几点？\n— 八点以后，我会在群里发地址。'}
+  ,{id:'d181',title:'推荐酒吧',sub:'Amigos - Bar',
+   pt:'— Onde vamos hoje?\n— Tem um bar na Vila Madalena com boa música ao vivo.\n— É caro?\n— Preço médio. Vale a pena!',
+   cn:'— 我们今天去哪里？\n— 维拉马达莱纳有一家有现场音乐的酒吧。\n— 贵吗？\n— 中等价位，很值！'}
+  ,{id:'d182',title:'请朋友吃饭',sub:'Amigos - Jantar',
+   pt:'— Você quer jantar lá em casa sábado?\n— Que ótimo! O que vai fazer?\n— Feijoada completa.\n— Amei! Posso levar sobremesa?',
+   cn:'— 你周六想来我家吃饭吗？\n— 太好了！你做什么？\n— 完整版黑豆炖肉。\n— 太喜欢了！我可以带甜点吗？'}
+  ,{id:'d183',title:'分摊账单',sub:'Amigos - Conta',
+   pt:'— Vamos rachar a conta?\n— Vamos. Quanto deu?\n— Trezentos e vinte. Somos cinco, sessenta e quatro cada.\n— Aceita Pix?\n— Aceito!',
+   cn:'— 我们AA制吧？\n— 好的，总共多少钱？\n— 三百二十，五个人，每人六十四。\n— 接受Pix吗？\n— 接受！'}
+  ,{id:'d184',title:'生日派对',sub:'Amigos - Aniversário',
+   pt:'— Você vem na minha festa sexta?\n— Claro! Que horas começa?\n— A partir das dezenove.\n— Posso levar alguém?\n— Pode, quanto mais gente melhor!',
+   cn:'— 周五你来我的派对吗？\n— 当然去！几点开始？\n— 七点以后。\n— 我可以带人吗？\n— 可以，人越多越好！'}
+  ,{id:'d185',title:'卡皮里尼亚',sub:'Amigos - Bebidas',
+   pt:'— O que você bebe?\n— Adoro caipirinha. É a bebida nacional!\n— Com cachaça ou vodka?\n— Com cachaça sempre! Vodka é a versão light.',
+   cn:'— 你喜欢喝什么？\n— 我爱卡皮里尼亚，是国饮！\n— 用卡夏莎还是伏特加？\n— 永远用卡夏莎！伏特加是轻版本。'}
+  ,{id:'d186',title:'讨论旅行',sub:'Amigos - Viagem',
+   pt:'— Vocês têm interesse em viajar juntos?\n— Tenho! Que tal Florianópolis?\n— Perfeito. Quando?\n— Nas férias de julho. Bora combinar?',
+   cn:'— 你们有兴趣一起旅行吗？\n— 有！去弗洛里亚诺波利斯怎么样？\n— 完美，什么时候？\n— 七月假期，要约起来吗？'}
+  ,{id:'d187',title:'讨论比赛',sub:'Amigos - Futebol',
+   pt:'— O que achou do jogo de ontem?\n— Não assisti, tava trabalhando.\n— O Flamengo ganhou de três a um!\n— Caramba! Tinha que ter visto.',
+   cn:'— 你觉得昨天的比赛怎么样？\n— 我没看，在工作。\n— 弗拉门戈三比一赢了！\n— 天啊！真应该看的。'}
+  ,{id:'d188',title:'聊天气',sub:'Amigos - Clima',
+   pt:'— Que calor hoje, hein?\n— Tá quarenta graus. Típico de São Paulo em janeiro.\n— E chuva vem?\n— Deve vir à tarde. Sempre assim.',
+   cn:'— 今天好热啊！\n— 四十度，一月份的圣保罗典型天气。\n— 会下雨吗？\n— 下午应该会，总是这样。'}
+  ,{id:'d189',title:'约咖啡',sub:'Amigos - Café',
+   pt:'— A gente marca um café essa semana?\n— Adoro! Quando você pode?\n— Quarta à tarde.\n— Perfeito. Naquele café da Paulista às três?\n— Combinado!',
+   cn:'— 这周我们约咖啡吗？\n— 喜欢！你什么时候方便？\n— 周三下午。\n— 完美，保利斯塔那家咖啡厅三点？\n— 约好了！'}
+  ,{id:'d190',title:'餐厅预订',sub:'Restaurante - Reserva',
+   pt:'— Quero reservar mesa para sexta-feira.\n— Para quantas pessoas?\n— Seis pessoas.\n— Que horas?\n— Às vinte horas.',
+   cn:'— 我想预订周五的餐桌。\n— 几位？\n— 六个人。\n— 几点？\n— 晚上八点。'}
+  ,{id:'d191',title:'餐厅过生日',sub:'Restaurante - Aniversário',
+   pt:'— Vamos comemorar aniversário aqui. Tem decoração?\n— Fazemos sim! Quer bolo também?\n— Sim, bolo de chocolate.\n— Pode deixar, a gente cuida de tudo.',
+   cn:'— 我们要在这里庆生，你们有装饰吗？\n— 我们做的！也要蛋糕吗？\n— 是的，巧克力蛋糕。\n— 放心，我们会安排好一切。'}
+  ,{id:'d192',title:'素食菜单',sub:'Restaurante - Vegetariano',
+   pt:'— Vocês têm opções vegetarianas?\n— Temos sim. O risoto de cogumelos é vegano.\n— E sem glúten tem?\n— O filé grelhado com legumes é sem glúten.',
+   cn:'— 你们有素食选项吗？\n— 有的，蘑菇意式烩饭是纯素的。\n— 有无麸质的吗？\n— 烤牛排配蔬菜是无麸质的。'}
+  ,{id:'d193',title:'食物过敏',sub:'Restaurante - Alergia',
+   pt:'— Sou alérgico a frutos do mar. Tem algum risco aqui?\n— Nosso caldo de peixe usa o mesmo tacho. Há risco de contaminação.\n— Então vou evitar o peixe.\n— Recomendo o frango grelhado, é seguro.',
+   cn:'— 我对海鲜过敏，这里有什么风险吗？\n— 我们的鱼汤用同一口锅，有交叉污染风险。\n— 那我就不点鱼了。\n— 推荐烤鸡，是安全的。'}
+  ,{id:'d194',title:'外卖投诉',sub:'Restaurante - Delivery',
+   pt:'— Meu pedido chegou errado.\n— Desculpe muito! O que veio diferente?\n— Pedi frango e veio carne.\n— Vamos mandar o pedido correto agora, sem custo.',
+   cn:'— 我的外卖送错了。\n— 非常抱歉！送来的有什么不同？\n— 我点了鸡肉，来的是牛肉。\n— 我们现在重新送正确的，不收费。'}
+  ,{id:'d195',title:'分开付账',sub:'Restaurante - Dividir Conta',
+   pt:'— Podemos dividir a conta?\n— Claro! Vão ser quatro separadas?\n— Isso mesmo.\n— Pode ser no cartão individual ou Pix.',
+   cn:'— 我们可以分开付账吗？\n— 当然！分四份吗？\n— 对。\n— 可以各自刷卡或用Pix。'}
+  ,{id:'d196',title:'点餐问推荐',sub:'Restaurante - Cardápio',
+   pt:'— O que você recomenda do cardápio?\n— O peixe do dia está ótimo, fresco e bem temperado.\n— Tem entrada?\n— Tem caldo verde e bolinhos de bacalhau.',
+   cn:'— 你推荐菜单上什么？\n— 今日鱼非常棒，新鲜调味好。\n— 有前菜吗？\n— 有绿汤和鳕鱼球。'}
+  ,{id:'d197',title:'要求换座位',sub:'Restaurante - Mesa',
+   pt:'— Posso sentar perto da janela?\n— Claro, essa mesa está livre.\n— Obrigado, prefiro com vista.\n— A vista do jardim é linda mesmo.',
+   cn:'— 我可以坐靠窗的位置吗？\n— 当然，那张桌子空着。\n— 谢谢，我喜欢有景色的位置。\n— 花园的景色确实很美。'}
+  ,{id:'d198',title:'问是否可以外带',sub:'Restaurante - Para Viagem',
+   pt:'— Posso pedir para viagem?\n— Pode, temos embalagens próprias.\n— Demora muito?\n— Uns quinze minutos para ficar pronto.',
+   cn:'— 我可以打包外带吗？\n— 可以，我们有专用包装。\n— 要等很久吗？\n— 大概十五分钟准备好。'}
+  ,{id:'d199',title:'给小费',sub:'Restaurante - Gorjeta',
+   pt:'— A gorjeta já está incluída na conta?\n— Tem dez por cento sugerido, mas não é obrigatório.\n— O serviço foi excelente. Vou deixar os dez por cento.\n— Obrigado demais! Volte sempre!',
+   cn:'— 小费已经包含在账单里了吗？\n— 建议10%，但不是强制的。\n— 服务非常好，我就留10%吧。\n— 太感谢了！欢迎再来！'}
 ];
 
 // ============ STATE ============
