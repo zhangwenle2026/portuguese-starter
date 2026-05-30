@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="app-version" content="20260531-0130">
-<meta name="version" content="20260531-greet-address-audio">
+<meta name="app-version" content="20260401-1052">
+<meta name="version" content="20260401-1015-dialogs200-player">
 <title>Eric的巴西葡萄牙语入门 · Português para Iniciantes</title>
 <style>
 :root{--green:#009c3b;--yellow:#ffdf00;--blue:#002776;--bg:#f0faf4;}
@@ -58,19 +58,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .tbtn.tstar{background:#fff3cd;}
 .tbtn.tcheck{background:#d4edda;}
 .tbtn.tcross{background:#f8d7da;}
-.spkbtn{width:30px;height:30px;border:none;border-radius:50%;cursor:pointer;font-size:.88em;background:var(--green);color:white;display:flex;align-items:center;justify-content:center;opacity:.85;transition:all .2s;box-shadow:0 1px 4px rgba(0,156,59,.3);}
-.spkbtn:hover{opacity:1;transform:scale(1.12);}
-.spkbtn:active{transform:scale(.95);}
-.audio-bar{display:flex;gap:8px;align-items:center;margin-bottom:10px;padding:8px 12px;background:white;border-radius:8px;border:1px solid rgba(0,156,59,.2);flex-wrap:wrap;}
-.audio-bar .abtn{padding:5px 10px;border:2px solid var(--green);border-radius:7px;background:white;color:var(--green);cursor:pointer;font-size:.78em;font-weight:600;transition:all .2s;}
-.audio-bar .abtn:hover,.audio-bar .abtn.active{background:var(--green);color:white;}
-.audio-bar .abtn.playing{background:var(--blue);border-color:var(--blue);color:white;animation:pulse 1.5s infinite;}
-.audio-bar .spd-sel{display:flex;gap:3px;margin-left:auto;}
-.audio-bar .spd-opt{padding:3px 8px;border:1.5px solid rgba(0,156,59,.4);border-radius:5px;background:white;cursor:pointer;font-size:.72em;font-weight:600;transition:all .2s;}
-.audio-bar .spd-opt:hover{border-color:var(--green);}
-.audio-bar .spd-opt.active{background:var(--green);color:white;border-color:var(--green);}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
-.fc.speaking{border:2px solid var(--green);box-shadow:0 0 12px rgba(0,156,59,.4);}
+.spkbtn{width:24px;height:24px;border:none;border-radius:50%;cursor:pointer;font-size:.75em;background:var(--green);color:white;display:flex;align-items:center;justify-content:center;opacity:.78;transition:opacity .2s;}
+.spkbtn:hover{opacity:1;}
 .lm1 .cpt{background:#bbb;color:transparent;border-radius:3px;}
 .lm1 .cf:hover .cpt{background:transparent;color:var(--blue);}
 .dc{background:white;border-radius:13px;border:1px solid rgba(0,156,59,.3);box-shadow:0 2px 8px rgba(0,156,59,.13);padding:16px;margin-bottom:14px;}
@@ -165,32 +154,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="toolbar">
     <input class="sbox" type="text" placeholder="🔍 搜索词汇..." oninput="filterCards('vocab',this.value)">
     <button class="fbtn active" onclick="setFilter('vocab','all',this)">全部</button>
-    <button class="fbtn" onclick="setFilter('vocab','问候',this)">问候</button>
-    <button class="fbtn" onclick="setFilter('vocab','称呼',this)">称呼</button>
-    <button class="fbtn" onclick="setFilter('vocab','星期',this)">星期</button>
-    <button class="fbtn" onclick="setFilter('vocab','月份',this)">月份</button>
     <button class="fbtn" onclick="setFilter('vocab','数字',this)">数字</button>
     <button class="fbtn" onclick="setFilter('vocab','颜色',this)">颜色</button>
-    <button class="fbtn" onclick="setFilter('vocab','时间',this)">时间</button>
     <button class="fbtn" onclick="setFilter('vocab','家庭',this)">家庭</button>
     <button class="fbtn" onclick="setFilter('vocab','食物',this)">食物</button>
     <button class="fbtn" onclick="setFilter('vocab','方向',this)">方向</button>
+    <button class="fbtn" onclick="setFilter('vocab','时间',this)">时间</button>
     <button class="fbtn" onclick="setFilter('vocab','动词',this)">动词</button>
     <button class="fbtn" onclick="setFilter('vocab','其他',this)">其他</button>
     <button class="fbtn" onclick="setFilter('vocab','⭐',this)">⭐收藏</button>
     <button class="fbtn" onclick="setFilter('vocab','✅',this)">✅掌握</button>
     <button class="fbtn" onclick="setFilter('vocab','✗',this)">✗待学</button>
     <button class="lbtn" id="lbtn0" onclick="toggleListen(0)">🎧 听力模式</button>
-  </div>
-  <div class="audio-bar">
-    <button class="abtn" id="playall-vocab" onclick="playAllCards('vocab')">🔊 播放全部</button>
-    <button class="abtn" id="autoplay-vocab" onclick="toggleAutoPlay('vocab')">🔁 自动播放</button>
-    <span style="font-size:.72em;color:#666">语速:</span>
-    <div class="spd-sel">
-      <button class="spd-opt" onclick="setGlobalSpeed(0.6,this)">🐢慢</button>
-      <button class="spd-opt active" onclick="setGlobalSpeed(0.85,this)">🐇正常</button>
-      <button class="spd-opt" onclick="setGlobalSpeed(1.2,this)">🚀快</button>
-    </div>
   </div>
   <div class="stbar" id="vocab-st"></div>
   <div class="mbar"><div class="mfill" id="vocab-mf" style="width:0%"></div></div>
@@ -205,10 +180,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button class="fbtn" onclick="setFilter('greet','✅',this)">✅掌握</button>
     <button class="lbtn" id="lbtn1" onclick="toggleListen(1)">🎧 听力模式</button>
   </div>
-  <div class="audio-bar">
-    <button class="abtn" id="playall-greet" onclick="playAllCards('greet')">🔊 播放全部</button>
-    <button class="abtn" id="autoplay-greet" onclick="toggleAutoPlay('greet')">🔁 自动播放</button>
-  </div>
   <div class="stbar" id="greet-st"></div>
   <div class="mbar"><div class="mfill" id="greet-mf" style="width:0%"></div></div>
   <div class="bbar">批量操作：<button onclick="batchTag('greet','⭐')">⭐全部收藏</button><button onclick="batchTag('greet','✅')">✅全部掌握</button><button onclick="batchClear('greet')">清除标签</button><button onclick="flipAll('greet')">🔄全部翻转</button></div>
@@ -221,10 +192,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button class="fbtn" onclick="setFilter('scene','⭐',this)">⭐收藏</button>
     <button class="fbtn" onclick="setFilter('scene','✅',this)">✅掌握</button>
     <button class="lbtn" id="lbtn2" onclick="toggleListen(2)">🎧 听力模式</button>
-  </div>
-  <div class="audio-bar">
-    <button class="abtn" id="playall-scene" onclick="playAllCards('scene')">🔊 播放全部</button>
-    <button class="abtn" id="autoplay-scene" onclick="toggleAutoPlay('scene')">🔁 自动播放</button>
   </div>
   <div class="stbar" id="scene-st"></div>
   <div class="mbar"><div class="mfill" id="scene-mf" style="width:0%"></div></div>
@@ -251,61 +218,6 @@ const lsSave = (k, v) => { try { localStorage.setItem(PT_KEY + '_' + k, JSON.str
 
 // ============ DATA ============
 const VOCAB = [
-  // ===== 问候 (Greetings) =====
-  {id:'v_gr0',pt:'Bom dia',cn:'早上好',hint:'邦-吉-啊',cat:'问候'},
-  {id:'v_gr1',pt:'Boa tarde',cn:'下午好',hint:'博-啊-塔-尔-德',cat:'问候'},
-  {id:'v_gr2',pt:'Boa noite',cn:'晚上好/晚安',hint:'博-啊-诺伊-特',cat:'问候'},
-  {id:'v_gr3',pt:'Olá',cn:'你好',hint:'奥-拉',cat:'问候'},
-  {id:'v_gr4',pt:'Oi',cn:'嗨',hint:'奥伊',cat:'问候'},
-  {id:'v_gr5',pt:'Tchau',cn:'拜拜',hint:'掐乌',cat:'问候'},
-  {id:'v_gr6',pt:'Até logo',cn:'再见',hint:'啊-特-洛-谷',cat:'问候'},
-  {id:'v_gr7',pt:'Até amanhã',cn:'明天见',hint:'啊-特-啊-玛-尼啊',cat:'问候'},
-  {id:'v_gr8',pt:'Bem-vindo',cn:'欢迎（男）',hint:'拜恩-文-杜',cat:'问候'},
-  {id:'v_gr9',pt:'Bem-vinda',cn:'欢迎（女）',hint:'拜恩-文-达',cat:'问候'},
-  {id:'v_gr10',pt:'Como vai?',cn:'你好吗？',hint:'科-莫-拜',cat:'问候'},
-  {id:'v_gr11',pt:'Tudo bem?',cn:'一切好吗？',hint:'图-杜-拜恩',cat:'问候'},
-  {id:'v_gr12',pt:'Tudo bem!',cn:'一切都好！',hint:'图-杜-拜恩',cat:'问候'},
-  {id:'v_gr13',pt:'Prazer',cn:'幸会/很高兴',hint:'普拉-泽尔',cat:'问候'},
-  {id:'v_gr14',pt:'Com licença',cn:'借过/打扰了',hint:'康-利-森-萨',cat:'问候'},
-  // ===== 称呼 (Forms of Address) =====
-  {id:'v_ad0',pt:'Eu',cn:'我',hint:'诶乌',cat:'称呼'},
-  {id:'v_ad1',pt:'Você',cn:'你',hint:'沃-赛',cat:'称呼'},
-  {id:'v_ad2',pt:'Ele',cn:'他',hint:'艾-利',cat:'称呼'},
-  {id:'v_ad3',pt:'Ela',cn:'她',hint:'艾-拉',cat:'称呼'},
-  {id:'v_ad4',pt:'Nós',cn:'我们',hint:'诺斯',cat:'称呼'},
-  {id:'v_ad5',pt:'Vocês',cn:'你们',hint:'沃-赛斯',cat:'称呼'},
-  {id:'v_ad6',pt:'Eles / Elas',cn:'他们/她们',hint:'艾-利斯/艾-拉斯',cat:'称呼'},
-  {id:'v_ad7',pt:'A gente',cn:'我们（口语）',hint:'啊-颉恩-特',cat:'称呼'},
-  {id:'v_ad8',pt:'Senhor / Sr.',cn:'先生',hint:'塞-纽尔',cat:'称呼'},
-  {id:'v_ad9',pt:'Senhora / Sra.',cn:'女士',hint:'塞-纽-拉',cat:'称呼'},
-  {id:'v_ad10',pt:'Amigo',cn:'朋友（男）',hint:'啊-咪-谷',cat:'称呼'},
-  {id:'v_ad11',pt:'Amiga',cn:'朋友（女）',hint:'啊-咪-嘎',cat:'称呼'},
-  {id:'v_ad12',pt:'Colega',cn:'同事',hint:'科-雷-嘎',cat:'称呼'},
-  {id:'v_ad13',pt:'Chefe',cn:'老板/领导',hint:'谢-菲',cat:'称呼'},
-  {id:'v_ad14',pt:'Vizinho',cn:'邻居（男）',hint:'维-兹-纽',cat:'称呼'},
-  {id:'v_ad15',pt:'Vizinha',cn:'邻居（女）',hint:'维-兹-尼啊',cat:'称呼'},
-  // ===== 星期 (Days of the Week) =====
-  {id:'v_wk0',pt:'segunda-feira',cn:'星期一',hint:'塞-贡-达-费-拉',cat:'星期'},
-  {id:'v_wk1',pt:'terça-feira',cn:'星期二',hint:'泰-萨-费-拉',cat:'星期'},
-  {id:'v_wk2',pt:'quarta-feira',cn:'星期三',hint:'夸-塔-费-拉',cat:'星期'},
-  {id:'v_wk3',pt:'quinta-feira',cn:'星期四',hint:'金-塔-费-拉',cat:'星期'},
-  {id:'v_wk4',pt:'sexta-feira',cn:'星期五',hint:'赛斯-塔-费-拉',cat:'星期'},
-  {id:'v_wk5',pt:'sábado',cn:'星期六',hint:'撒-巴-杜',cat:'星期'},
-  {id:'v_wk6',pt:'domingo',cn:'星期日',hint:'东-明-谷',cat:'星期'},
-  // ===== 月份 (Months) =====
-  {id:'v_mo0',pt:'janeiro',cn:'一月',hint:'扎-内-罗',cat:'月份'},
-  {id:'v_mo1',pt:'fevereiro',cn:'二月',hint:'菲-维-雷-罗',cat:'月份'},
-  {id:'v_mo2',pt:'março',cn:'三月',hint:'玛-索',cat:'月份'},
-  {id:'v_mo3',pt:'abril',cn:'四月',hint:'啊-布里-尔',cat:'月份'},
-  {id:'v_mo4',pt:'maio',cn:'五月',hint:'迈-哦',cat:'月份'},
-  {id:'v_mo5',pt:'junho',cn:'六月',hint:'如-纽',cat:'月份'},
-  {id:'v_mo6',pt:'julho',cn:'七月',hint:'如-柳',cat:'月份'},
-  {id:'v_mo7',pt:'agosto',cn:'八月',hint:'啊-够-斯图',cat:'月份'},
-  {id:'v_mo8',pt:'setembro',cn:'九月',hint:'塞-腾-布罗',cat:'月份'},
-  {id:'v_mo9',pt:'outubro',cn:'十月',hint:'奥-图-布罗',cat:'月份'},
-  {id:'v_mo10',pt:'novembro',cn:'十一月',hint:'诺-文-布罗',cat:'月份'},
-  {id:'v_mo11',pt:'dezembro',cn:'十二月',hint:'德-泽恩-布罗',cat:'月份'},
-  // ===== 数字 (Numbers) =====
   {id:'v0',pt:'zero',cn:'零',hint:'泽-罗',cat:'数字'},
   {id:'v1',pt:'um / uma',cn:'一',hint:'温（男/女形式）',cat:'数字'},
   {id:'v2',pt:'dois / duas',cn:'二',hint:'道伊斯/杜阿斯',cat:'数字'},
@@ -1087,9 +999,6 @@ let listenModes = [0, 0, 0]; // per tab index
 let flippedCards = new Set();
 let audioState = {}; // {id: {utterance, paused, startTime, elapsed}}
 let tlTimers = {};
-let globalSpeed = 0.85;
-let autoPlayEnabled = { vocab: false, greet: false, scene: false };
-let playAllState = null; // { ns, items, idx, stopped }
 
 const LISTEN_LABELS = ['🎧 听力模式', '👁️ 显葡语', '👁️ 显全部'];
 
@@ -1101,77 +1010,13 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-function speak(text, lang, cb) {
+function speak(text, lang) {
   if (!window.speechSynthesis) { showToast('浏览器不支持语音合成'); return; }
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   u.lang = lang || 'pt-BR';
-  u.rate = globalSpeed;
-  if (cb) u.onend = cb;
+  u.rate = 0.85;
   window.speechSynthesis.speak(u);
-}
-
-// ============ GLOBAL AUDIO CONTROLS ============
-function setGlobalSpeed(spd, btn) {
-  globalSpeed = spd;
-  document.querySelectorAll('.spd-opt').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-}
-
-function toggleAutoPlay(ns) {
-  autoPlayEnabled[ns] = !autoPlayEnabled[ns];
-  const btn = document.getElementById('autoplay-' + ns);
-  if (btn) {
-    btn.classList.toggle('active', autoPlayEnabled[ns]);
-    btn.textContent = autoPlayEnabled[ns] ? '🔁 自动播放 ✓' : '🔁 自动播放';
-  }
-  showToast(autoPlayEnabled[ns] ? '自动播放已开启' : '自动播放已关闭');
-}
-
-function playAllCards(ns) {
-  if (!window.speechSynthesis) { showToast('浏览器不支持语音'); return; }
-  // If already playing, stop
-  if (playAllState && playAllState.ns === ns && !playAllState.stopped) {
-    stopPlayAll();
-    return;
-  }
-  const dataMap = { vocab: getVisibleVocab, greet: getVisibleGreet, scene: getVisibleScene };
-  const items = dataMap[ns] ? dataMap[ns]() : [];
-  if (!items.length) { showToast('没有可播放的内容'); return; }
-  playAllState = { ns, items, idx: 0, stopped: false };
-  const btn = document.getElementById('playall-' + ns);
-  if (btn) { btn.classList.add('playing'); btn.textContent = '⏹️ 停止播放'; }
-  playNextCard();
-}
-
-function playNextCard() {
-  if (!playAllState || playAllState.stopped) return;
-  const { ns, items, idx } = playAllState;
-  if (idx >= items.length) { stopPlayAll(); return; }
-  const item = items[idx];
-  // Highlight current card
-  document.querySelectorAll('.fc.speaking').forEach(el => el.classList.remove('speaking'));
-  const cardEl = document.getElementById('fc-' + item.id);
-  if (cardEl) { cardEl.classList.add('speaking'); cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
-  const text = item.pt.replace(/\//g, ' ');
-  speak(text, 'pt-BR', () => {
-    if (!playAllState || playAllState.stopped) return;
-    // Remove highlight
-    if (cardEl) cardEl.classList.remove('speaking');
-    playAllState.idx++;
-    setTimeout(playNextCard, 400);
-  });
-}
-
-function stopPlayAll() {
-  window.speechSynthesis.cancel();
-  if (playAllState) {
-    playAllState.stopped = true;
-    const btn = document.getElementById('playall-' + playAllState.ns);
-    if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊 播放全部'; }
-  }
-  document.querySelectorAll('.fc.speaking').forEach(el => el.classList.remove('speaking'));
-  playAllState = null;
 }
 
 function getTag(id) { return tags[id] || ''; }
@@ -1546,14 +1391,6 @@ function flipCard(id) {
   if (flippedCards.has(id)) { flippedCards.delete(id); } else { flippedCards.add(id); markToday(id); }
   const el = document.getElementById('fc-' + id);
   if (el) el.classList.toggle('flipped', flippedCards.has(id));
-  // Auto-play pronunciation when flipping to front (revealing the word)
-  if (!flippedCards.has(id)) {
-    const item = VOCAB.find(v => v.id === id) || GREET.find(v => v.id === id) || SCENE.find(v => v.id === id);
-    const ns = VOCAB.find(v => v.id === id) ? 'vocab' : GREET.find(v => v.id === id) ? 'greet' : 'scene';
-    if (item && autoPlayEnabled[ns]) {
-      speak(item.pt.replace(/\//g, ' '), 'pt-BR');
-    }
-  }
   refreshDashboard();
 }
 function flipAll(ns) {
